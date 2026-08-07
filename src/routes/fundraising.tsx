@@ -825,7 +825,9 @@ function ContributeBlock({
               ₹{p.toLocaleString("en-IN")}
             </button>
           ))}
+          <div className="bg-ink/70" />
         </div>
+
 
         <a
           href={upiUrl}
