@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.png.asset.json";
 import { SiteMenu } from "@/components/SiteMenu";
-import { Sprig } from "@/components/Sprig";
 import { ProcessJourney } from "@/components/ProcessJourney";
-
+import { Chamber, Court, Figure, Plate, Quiet, Row, Title } from "@/components/Ando";
 
 export const Route = createFileRoute("/community")({
   head: () => ({
@@ -20,6 +19,7 @@ export const Route = createFileRoute("/community")({
         content:
           "A community-driven workforce of 150+ neighbours rescuing, fostering and caring for street animals across the city.",
       },
+      { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
@@ -28,15 +28,15 @@ export const Route = createFileRoute("/community")({
 
 function Nav() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-background/85 backdrop-blur-md border-b border-border">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-12 h-16 md:h-20 flex items-center justify-between">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-20 md:px-12">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo.url} alt="Mohalle Mastane" className="h-10 md:h-12 w-auto" />
-          <span className="hidden sm:flex flex-col leading-tight">
-            <span className="serif text-[15px] md:text-[17px] tracking-[0.18em] uppercase">
+          <img src={logo.url} alt="Mohalle Mastane" className="h-10 w-auto md:h-12" />
+          <span className="hidden flex-col leading-tight sm:flex">
+            <span className="serif text-[15px] uppercase tracking-[0.18em] md:text-[17px]">
               Mohalle Mastane
             </span>
-            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
+            <span className="text-[9px] uppercase tracking-[0.32em] text-muted-foreground md:text-[10px]">
               Coexistence · Compassion · Togetherness
             </span>
           </span>
@@ -46,7 +46,7 @@ function Nav() {
             href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center px-4 md:px-5 py-2 md:py-2.5 bg-foreground text-background text-[10px] md:text-[11px] uppercase tracking-[0.26em] hover:bg-accent transition-colors"
+            className="inline-flex items-center bg-foreground px-4 py-2 text-[10px] uppercase tracking-[0.26em] text-background transition-colors hover:bg-accent md:px-5 md:py-2.5 md:text-[11px]"
           >
             Join Group
           </a>
@@ -57,35 +57,46 @@ function Nav() {
   );
 }
 
+/* 01 — the approach: a long empty wall before anything is said. */
 function Hero() {
   return (
-    <section className="concrete light-shaft relative pt-32 md:pt-44 pb-20 md:pb-32 border-b border-border overflow-hidden">
-      <div className="pointer-events-none absolute inset-y-0 left-[8%] w-px bg-foreground/8" />
-      <div className="pointer-events-none absolute inset-y-0 left-[38%] w-px bg-foreground/8" />
-      <div className="relative mx-auto max-w-[1200px] px-5 md:px-12">
-        <div className="plate mb-10">01 — Who We Are · 150 Members Strong</div>
-        <h1 className="serif text-[44px] leading-[1.02] md:text-[84px] md:leading-[0.96] tracking-[-0.03em] text-foreground max-w-4xl">
-          Not any organisation
+    <section className="formwork relative flex min-h-[92svh] flex-col justify-end overflow-hidden bg-background pb-16 pt-32 md:pb-28">
+      <div className="pointer-events-none absolute inset-y-0 left-[7%] w-px bg-foreground/10" />
+      <div className="pointer-events-none absolute inset-y-0 right-[7%] hidden w-px bg-foreground/10 md:block" />
+      <div className="pointer-events-none absolute inset-x-0 top-[38%] h-px bg-foreground/10" />
+      {/* the daylight falling across the wall */}
+      <div className="light-shaft pointer-events-none absolute inset-0" />
+
+      <div className="relative mx-auto w-full max-w-[1240px] px-5 md:px-12">
+        <Plate n="01" label="Who We Are · 150 Members Strong" />
+        <h1 className="mt-12 max-w-5xl serif text-[46px] leading-[1.0] tracking-[-0.035em] text-foreground md:mt-20 md:text-[104px] md:leading-[0.94]">
+          Not an organisation
           <br />
           sitting in one place.
-          <br />
-          <span className="italic text-accent">A community-driven workforce.</span>
         </h1>
-        <Sprig className="mt-8 h-6 w-28 text-accent" />
-        <p className="mt-8 max-w-2xl text-[15px] md:text-[18px] leading-[2] text-muted-foreground">
-          Mohalle Mastane belongs to all of us. Born in 2025 from one
-          person's vision, it is now a living circle of 150+ neighbours in
-          the city — feeders, rescuers, foster parents, students and
-          well-wishers — caring for the street animals of every neighbourhood.
-        </p>
-        <p className="mt-6 serif italic text-[18px] md:text-[22px] text-foreground/80">
-          "By the community. For the community. To the community."
-        </p>
+        <div className="mt-12 grid gap-10 border-t border-border pt-10 md:mt-20 md:grid-cols-12 md:gap-16">
+          <p className="serif italic text-[22px] leading-[1.35] text-accent md:col-span-5 md:text-[34px]">
+            A community-driven
+            <br />
+            workforce.
+          </p>
+          <div className="md:col-span-7 md:pt-2">
+            <p className="max-w-xl text-[15px] leading-[2] text-muted-foreground md:text-[16px]">
+              Mohalle Mastane belongs to all of us. Born in 2025 from one person's vision, it is now
+              a living circle of 150+ neighbours in the city — feeders, rescuers, foster parents,
+              students and well-wishers — caring for the street animals of every neighbourhood.
+            </p>
+            <p className="mt-10 text-[10px] uppercase tracking-[0.34em] text-muted-foreground">
+              By the community · For the community · To the community
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
+/* 02 — the shadowed volume: numbers cut into dark concrete. */
 function Stats() {
   const stats = [
     { n: "200+", label: "Animals helped in 8 months" },
@@ -94,401 +105,360 @@ function Stats() {
     { n: "10", label: "Foster & adoptive parents" },
   ];
   return (
-    <section className="on-dark concrete-dark light-shaft-dark text-background border-b border-border">
-      <div className="relative z-[1] mx-auto max-w-[1400px] px-5 md:px-12 py-24 md:py-36">
-        <div className="grid md:grid-cols-12 gap-10 mb-12">
-          <div className="md:col-span-5">
-            <div className="plate mb-8 text-accent">02 — In the last 8 months</div>
-            <h2 className="serif text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em] text-background">
-              Small beginnings.
-              <br />
-              <span className="italic">Real impact.</span>
-            </h2>
+    <Chamber>
+      <Title n="02" label="In the last 8 months" lead="Every number here is a neighbour who showed up, a street that stayed kinder, an animal that lived because the community decided to care out loud.">
+        Small beginnings.
+        <br />
+        <span className="italic text-accent">Real impact.</span>
+      </Title>
+      <div className="grid grid-cols-2 md:grid-cols-4">
+        {stats.map((s, i) => (
+          <div
+            key={s.label}
+            className={`px-1 md:px-8 ${i % 2 !== 0 ? "border-l border-background/12" : ""} ${
+              i !== 0 ? "md:border-l md:border-background/12" : "md:border-l-0"
+            } ${i >= 2 ? "border-t border-background/12 md:border-t-0" : ""}`}
+          >
+            <Figure n={s.n} label={s.label} />
           </div>
-          <div className="md:col-span-7 md:pt-3 text-[14px] md:text-[15px] leading-[1.85] text-background/70">
-            Every number here is a neighbour who showed up, a street that
-            stayed kinder, an animal that lived because the community
-            decided to care out loud.
-          </div>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-background/15">
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              className={`py-10 md:py-14 px-2 md:px-6 ${i !== 0 ? "md:border-l border-background/15" : ""} ${i % 2 !== 0 ? "border-l border-background/15" : ""} ${i >= 2 ? "border-t border-background/15 md:border-t-0" : ""}`}
-            >
-              <div className="serif text-[44px] md:text-[64px] leading-none tracking-[-0.02em] text-background">
-                {s.n}
-              </div>
-              <div className="mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-background/60">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
+        ))}
       </div>
-    </section>
+    </Chamber>
   );
 }
 
+/* 03 — four principles, held apart by air. */
 function Pillars() {
   const items = [
-    {
-      icon: "👁️",
-      title: "Every message matters",
-      body: "Every photo you share of an injured animal — we see it, we act on it.",
-    },
-    {
-      icon: "📌",
-      title: "Every case is tracked",
-      body: "Logged from the first message to the final update — nothing falls through.",
-    },
-    {
-      icon: "🤝",
-      title: "Neighbours leading neighbours",
-      body: "Experienced rescuers from your own neighbourhood guide every step.",
-    },
-    {
-      icon: "🔄",
-      title: "A circle, not a service",
-      body: "It closes only when the animal is safe — and the community knows.",
-    },
+    { title: "Every message matters", body: "Every photo you share of an injured animal — we see it, we act on it." },
+    { title: "Every case is tracked", body: "Logged from the first message to the final update — nothing falls through." },
+    { title: "Neighbours leading neighbours", body: "Experienced rescuers from your own neighbourhood guide every step." },
+    { title: "A circle, not a service", body: "It closes only when the animal is safe — and the community knows." },
   ];
   return (
-    <section className="py-20 md:py-28">
-      <div className="mx-auto max-w-[1200px] px-5 md:px-12">
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
-          {items.map((it) => (
-            <div key={it.title} className="border-t border-border pt-7">
-              <div className="text-[28px] mb-4">{it.icon}</div>
-              <h3 className="serif text-[22px] md:text-[26px] tracking-[-0.01em]">
-                {it.title}
-              </h3>
-              <p className="mt-4 text-[14px] md:text-[15px] leading-[1.85] text-muted-foreground max-w-md">
-                {it.body}
-              </p>
-            </div>
-          ))}
+    <Court>
+      <div className="grid gap-10 md:grid-cols-12 md:gap-16">
+        <div className="md:col-span-4">
+          <Plate n="03" label="Principles" />
+          <p className="mt-10 serif text-[26px] leading-[1.2] tracking-[-0.01em] md:text-[34px]">
+            Four rules,
+            <br />
+            <span className="italic text-accent">nothing more.</span>
+          </p>
+        </div>
+        <div className="md:col-span-8">
+          <div className="border-t border-border">
+            {items.map((it, i) => (
+              <Row key={it.title} index={`0${i + 1}`} head={it.title} body={it.body} />
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </Court>
   );
 }
 
+/* 04 — proportion drawn as measured bars. */
 function Composition() {
   const rows = [
-    { pct: "10%", label: "Active rescuers on the ground" },
-    { pct: "30%", label: "Support through funding, reviews & temporary help" },
-    { pct: "60%", label: "Yet to join the movement — and that is who we are here for" },
+    { pct: 10, label: "Active rescuers on the ground" },
+    { pct: 30, label: "Support through funding, reviews & temporary help" },
+    { pct: 60, label: "Yet to join the movement — and that is who we are here for" },
+  ];
+  const phases = [
+    {
+      tag: "Phase One — Now",
+      num: "10 → 50",
+      body: "Grow active rescuers from 10% to 50% of the community. Include more neighbours in on-ground rescue coordination.",
+    },
+    {
+      tag: "Phase Two — Next",
+      num: "50 → 80",
+      body: "Expand to a point where 80% of members are actively contributing — through rescue, fostering, funding, or awareness.",
+    },
   ];
   return (
-    <section className="concrete light-shaft border-y border-border py-24 md:py-32">
-      <div className="mx-auto max-w-[1200px] px-5 md:px-12">
-        <div className="grid md:grid-cols-12 gap-10 mb-12">
-          <div className="md:col-span-5">
-            <div className="plate mb-8">03 — 150 Members Strong</div>
-            <h2 className="serif text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
-              Growing,
-              <br />
-              <span className="italic text-accent">together.</span>
-            </h2>
-          </div>
-          <p className="md:col-span-7 md:pt-3 text-[15px] md:text-base leading-[1.85] text-muted-foreground">
-            Every person in this group matters — whether you rescue
-            actively, contribute occasionally, or are still finding your
-            way in. The movement is built for all of you.
-          </p>
-        </div>
-        <ul className="border-t border-border">
-          {rows.map((r) => (
-            <li
-              key={r.pct}
-              className="grid grid-cols-[80px_1fr] md:grid-cols-[160px_1fr] items-baseline gap-6 border-b border-border py-6 md:py-8"
-            >
-              <span className="serif italic text-accent text-[32px] md:text-[44px] leading-none">
-                {r.pct}
-              </span>
-              <span className="text-[14px] md:text-[16px] leading-[1.7] text-foreground/85">
+    <Court>
+      <Title n="04" label="150 Members Strong" lead="Every person in this group matters — whether you rescue actively, contribute occasionally, or are still finding your way in.">
+        Growing,
+        <br />
+        <span className="italic text-accent">together.</span>
+      </Title>
+
+      <div>
+        {rows.map((r) => (
+          <div key={r.label} className="border-b border-border py-8 md:py-10">
+            <div className="flex items-baseline justify-between gap-6">
+              <span className="max-w-2xl text-[14px] leading-[1.8] text-foreground/80 md:text-[16px]">
                 {r.label}
               </span>
-            </li>
-          ))}
-        </ul>
-        <div className="grid md:grid-cols-2 gap-6 mt-12">
-          {[
-            {
-              tag: "Phase One — Now",
-              num: "10% → 50%",
-              body: "Grow active rescuers from 10% to 50% of the community. Include more neighbours in on-ground rescue coordination.",
-            },
-            {
-              tag: "Phase Two — Next",
-              num: "50% → 80%",
-              body: "Expand to a point where 80% of members are actively contributing — through rescue, fostering, funding, or awareness.",
-            },
-          ].map((p) => (
-            <div key={p.tag} className="border border-border bg-background p-7 md:p-9">
-              <div className="eyebrow mb-4">{p.tag}</div>
-              <div className="serif text-[28px] md:text-[34px] tracking-[-0.01em] italic">
-                {p.num}
-              </div>
-              <p className="mt-4 text-[14px] md:text-[15px] leading-[1.85] text-muted-foreground">
-                {p.body}
-              </p>
+              <span className="serif text-[30px] leading-none text-accent md:text-[44px]">
+                {r.pct}%
+              </span>
             </div>
-          ))}
-        </div>
+            <div className="mt-5 h-px w-full bg-border">
+              <div className="h-px bg-accent" style={{ width: `${r.pct}%` }} />
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
+
+      <div className="mt-20 grid md:grid-cols-2">
+        {phases.map((p, i) => (
+          <div
+            key={p.tag}
+            className={`border-t border-border py-10 md:py-14 ${
+              i === 1 ? "md:border-l md:border-border md:pl-14" : "md:pr-14"
+            }`}
+          >
+            <div className="plate">{p.tag}</div>
+            <div className="mt-6 serif text-[36px] leading-none tracking-[-0.02em] md:text-[54px]">
+              {p.num}
+              <span className="text-accent">%</span>
+            </div>
+            <p className="mt-6 max-w-md text-[14px] leading-[1.9] text-muted-foreground md:text-[15px]">
+              {p.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </Court>
   );
 }
 
+/* 05 — the passage: how a case walks through the building. */
 function Process() {
   return (
-    <section className="py-20 md:py-32">
-      <div className="mx-auto max-w-[1200px] px-5 md:px-12">
-        <div className="text-center max-w-2xl mx-auto mb-14 md:mb-20">
-          <div className="plate mb-8">04 — The Process</div>
-          <h2 className="serif text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em]">
-            How this community
-            <br />
-            <span className="italic">functions.</span>
-          </h2>
-          <p className="mt-6 text-[15px] md:text-base leading-[1.85] text-muted-foreground">
-            Five steps, drawn out — from the moment you notice an animal in
-            trouble to the moment the case comes back to the group as an update.
-          </p>
-        </div>
-        <ProcessJourney />
-
-        <p className="mt-12 max-w-3xl text-[14px] md:text-[15px] leading-[1.9] text-muted-foreground border-l-2 border-accent pl-6">
-          <span className="text-foreground font-medium">On veterinary care:</span>{" "}
-          Our city, like many towns, currently lacks advanced animal
-          medical infrastructure. We work with the Government Veterinary
-          Hospital today and are deeply grateful for the support it provides.
-          We know that building proper, dedicated animal medical facilities is
-          one of the most urgent needs for this city — and we are actively
-          looking for individuals, organisations, or institutions who share
-          this vision and would like to support or collaborate with us.
+    <Court>
+      <Title n="05" label="The Process" lead="Five steps, drawn out — from the moment you notice an animal in trouble to the moment the case comes back to the group as an update.">
+        How this community
+        <br />
+        <span className="italic text-accent">functions.</span>
+      </Title>
+      <ProcessJourney />
+      <div className="mt-16 grid gap-8 border-t border-border pt-10 md:grid-cols-12 md:gap-16">
+        <div className="plate md:col-span-4">On veterinary care</div>
+        <p className="max-w-2xl text-[14px] leading-[2] text-muted-foreground md:col-span-8 md:text-[15px]">
+          Our city, like many towns, currently lacks advanced animal medical infrastructure. We work
+          with the Government Veterinary Hospital today and are deeply grateful for the support it
+          provides. We know that building proper, dedicated animal medical facilities is one of the
+          most urgent needs for this city — and we are actively looking for individuals,
+          organisations, or institutions who share this vision and would like to support or
+          collaborate with us.
         </p>
       </div>
-    </section>
+    </Court>
   );
 }
 
+/* 06 — the record wall. */
 function Cases() {
   const cases = [
     {
       id: "CR-001",
-      name: "Chiku",
-      location: "City centre",
-      condition: "Paralysed — could not walk",
-      supported: "Ayush — cared for over a year",
-      fostered: "Aditi — long-term foster care",
+      rows: [
+        ["Name", "Chiku"],
+        ["Location", "City centre"],
+        ["Condition", "Paralysed — could not walk"],
+        ["Supported by", "Ayush — cared for over a year"],
+        ["Fostered by", "Aditi — long-term foster care"],
+      ],
       status: "In Care — Ongoing",
     },
     {
       id: "CR-002",
-      name: "Piggy",
-      location: "Sector 9",
-      condition: "Fracture — unable to walk",
-      rescued: "Mohalle Mastane Rescue Team",
-      adopted: "Bhavna — permanently adopted",
+      rows: [
+        ["Name", "Piggy"],
+        ["Location", "Sector 9"],
+        ["Condition", "Fracture — unable to walk"],
+        ["Rescued by", "Mohalle Mastane Rescue Team"],
+        ["Adopted by", "Bhavna — permanently adopted"],
+      ],
       status: "Recovered & Adopted",
     },
   ];
   return (
-    <section className="concrete light-shaft border-t border-border py-24 md:py-32">
-      <div className="mx-auto max-w-[1200px] px-5 md:px-12">
-        <div className="grid md:grid-cols-12 gap-10 mb-14">
-          <div className="md:col-span-5">
-            <div className="plate mb-8">05 — Real Stories</div>
-            <h2 className="serif text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
-              What every case
-              <br />
-              <span className="italic text-accent">looks like.</span>
-            </h2>
-          </div>
-          <p className="md:col-span-7 md:pt-3 text-[15px] md:text-base leading-[1.85] text-muted-foreground">
-            Every rescue in this group is documented — so every animal is
-            accounted for, and every person who helped is remembered.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-2 gap-6">
-          {cases.map((c) => (
-            <article
-              key={c.id}
-              className="border border-border bg-background p-7 md:p-9"
-            >
-              <div className="flex items-baseline justify-between border-b border-border pb-4">
-                <span className="eyebrow">🐾 Case Card</span>
-                <span className="serif italic text-accent text-[16px]">
-                  {c.id}
-                </span>
-              </div>
-              <dl className="mt-6 space-y-4 text-[14px] md:text-[15px]">
-                <Row label="🐕 Name" value={c.name} />
-                <Row label="📍 Location" value={c.location} />
-                <Row label="⚠️ Condition" value={c.condition} />
-                {c.supported && <Row label="🤝 Supported By" value={c.supported} />}
-                {c.rescued && <Row label="🤝 Rescued By" value={c.rescued} />}
-                {c.fostered && <Row label="🏠 Fostered By" value={c.fostered} />}
-                {c.adopted && <Row label="🏠 Adopted By" value={c.adopted} />}
-              </dl>
-              <div className="mt-7 pt-5 border-t border-border eyebrow text-accent">
-                {c.status}
-              </div>
-            </article>
-          ))}
-        </div>
-        <div className="mt-14 max-w-2xl">
-          <div className="eyebrow mb-4">Why It Matters</div>
-          <p className="serif italic text-[22px] md:text-[28px] leading-[1.4] tracking-[-0.01em] text-foreground">
-            "Because you deserve to know what happened."
-          </p>
-          <p className="mt-6 text-[15px] leading-[1.85] text-muted-foreground">
-            When you stopped your day to photograph that dog, when you stayed
-            with an injured cat until someone arrived — that moment had a
-            result. These case cards exist to close that loop for you — to
-            show the community that every name, every location, every person
-            who helped is remembered.
-          </p>
-        </div>
+    <Chamber>
+      <Title n="06" label="Real Stories" lead="Every rescue in this group is documented — so every animal is accounted for, and every person who helped is remembered.">
+        What every case
+        <br />
+        <span className="italic text-accent">looks like.</span>
+      </Title>
+
+      <div className="grid md:grid-cols-2">
+        {cases.map((c, i) => (
+          <article
+            key={c.id}
+            className={`border-t border-background/12 py-10 md:py-14 ${
+              i === 1 ? "md:border-l md:border-background/12 md:pl-14" : "md:pr-14"
+            }`}
+          >
+            <div className="flex items-baseline justify-between">
+              <span className="plate">Case Record</span>
+              <span className="serif italic text-[18px] text-accent">{c.id}</span>
+            </div>
+            <dl className="mt-8">
+              {c.rows.map(([k, v]) => (
+                <div
+                  key={k}
+                  className="grid grid-cols-[7.5rem_1fr] gap-4 border-b border-background/10 py-4 text-[14px] md:text-[15px]"
+                >
+                  <dt className="text-[10px] uppercase tracking-[0.22em] text-background/45 pt-1">
+                    {k}
+                  </dt>
+                  <dd className="text-background/90">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="mt-6 text-[10px] uppercase tracking-[0.26em] text-accent">
+              {c.status}
+            </div>
+          </article>
+        ))}
       </div>
-    </section>
+
+      <div className="mt-20 grid gap-10 border-t border-background/12 pt-12 md:grid-cols-12 md:gap-16">
+        <div className="md:col-span-5">
+          <Quiet>"Because you deserve to know what happened."</Quiet>
+        </div>
+        <p className="max-w-xl text-[14px] leading-[2] text-background/65 md:col-span-7 md:text-[15px]">
+          When you stopped your day to photograph that dog, when you stayed with an injured cat
+          until someone arrived — that moment had a result. These case records exist to close that
+          loop for you: every name, every location, every person who helped is remembered.
+        </p>
+      </div>
+    </Chamber>
   );
 }
 
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="grid grid-cols-[140px_1fr] gap-4">
-      <dt className="text-muted-foreground">{label}</dt>
-      <dd className="text-foreground">{value}</dd>
-    </div>
-  );
-}
-
+/* 07 — the address to the young. */
 function Youth() {
   return (
-    <section className="py-20 md:py-32">
-      <div className="mx-auto max-w-[1100px] px-5 md:px-12">
-        <div className="plate mb-10">06 — Especially, to the youth of this neighbourhood</div>
-        <h2 className="serif text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em]">
-          You have the energy,
-          <br />
-          the reach, the awareness
-          <br />
-          <span className="italic text-accent">this movement needs.</span>
-        </h2>
-        <div className="mt-10 space-y-6 max-w-2xl text-[15px] md:text-[17px] leading-[1.85] text-muted-foreground">
+    <Court>
+      <Plate n="07" label="Especially, to the youth of this neighbourhood" />
+      <h2 className="mt-12 max-w-4xl serif text-[36px] leading-[1.05] tracking-[-0.03em] md:mt-16 md:text-[76px] md:leading-[0.98]">
+        You have the energy,
+        <br />
+        the reach, the awareness
+        <br />
+        <span className="italic text-accent">this movement needs.</span>
+      </h2>
+      <div className="mt-14 grid gap-10 border-t border-border pt-10 md:grid-cols-12 md:gap-16">
+        <div className="space-y-7 text-[15px] leading-[2] text-muted-foreground md:col-span-7 md:text-[16px]">
           <p>
-            Animal welfare is not someone else's responsibility — it never
-            was. Every street you walk, every colony you live in — you can
-            be the reason an animal survives.
+            Animal welfare is not someone else's responsibility — it never was. Every street you
+            walk, every colony you live in — you can be the reason an animal survives.
           </p>
           <p>
-            We are not asking you to become a full-time rescuer. We are
-            asking you to <span className="text-foreground italic">care out loud.</span>
-          </p>
-          <p className="serif italic text-foreground text-[20px] md:text-[24px]">
-            That ripple is how movements begin.
+            We are not asking you to become a full-time rescuer. We are asking you to{" "}
+            <span className="italic text-foreground">care out loud.</span>
           </p>
         </div>
+        <div className="md:col-span-5">
+          <Quiet>That ripple is how movements begin.</Quiet>
+        </div>
       </div>
-    </section>
+    </Court>
   );
 }
 
+/* 08 — the doors: every way in, given equal weight. */
 function TakeAction() {
   const items = [
-    { icon: "📸", pre: "If you see", title: "An injured or sick animal", body: "Post a photo and location in the group. That is enough to start." },
-    { icon: "🏃", pre: "If there is", title: "Immediate danger", body: "Tag an experienced rescuer right away. They are your neighbours." },
-    { icon: "🌿", pre: "If you can", title: "Monitor a recovering animal", body: "Offer to feed, check in, or observe daily. Small acts matter enormously." },
-    { icon: "🏠", pre: "If you are willing", title: "Foster or shelter temporarily", body: "Let us know — we will guide you through every step." },
-    { icon: "📣", pre: "If you want to", title: "Spread awareness", body: "Share cases, invite others, inspire your colony to care." },
-    { icon: "🌱", pre: "If you want to", title: "Learn and help regularly", body: "Tell us — we will connect you with experienced rescuers near you." },
+    { pre: "If you see", title: "An injured or sick animal", body: "Post a photo and location in the group. That is enough to start." },
+    { pre: "If there is", title: "Immediate danger", body: "Tag an experienced rescuer right away. They are your neighbours." },
+    { pre: "If you can", title: "Monitor a recovering animal", body: "Offer to feed, check in, or observe daily. Small acts matter enormously." },
+    { pre: "If you are willing", title: "Foster or shelter temporarily", body: "Let us know — we will guide you through every step." },
+    { pre: "If you want to", title: "Spread awareness", body: "Share cases, invite others, inspire your colony to care." },
+    { pre: "If you want to", title: "Learn and help regularly", body: "Tell us — we will connect you with experienced rescuers near you." },
   ];
   return (
-    <section className="concrete light-shaft border-y border-border py-24 md:py-36">
-      <div className="mx-auto max-w-[1300px] px-5 md:px-12">
-        <div className="text-center max-w-2xl mx-auto mb-14 md:mb-20">
-          <div className="plate mb-8">07 — Take Action</div>
-          <h2 className="serif text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em]">
-            How you can be
-            <br />
-            <span className="italic">part of this.</span>
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-          {items.map((it) => (
-            <div key={it.title} className="bg-background p-7 md:p-9">
-              <div className="text-[26px]">{it.icon}</div>
-              <div className="mt-5 eyebrow">{it.pre}</div>
-              <h3 className="mt-2 serif text-[20px] md:text-[24px] tracking-[-0.01em]">
-                {it.title}
-              </h3>
-              <p className="mt-4 text-[14px] leading-[1.8] text-muted-foreground">
-                {it.body}
-              </p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-16 text-center">
-          <p className="text-[14px] uppercase tracking-[0.28em] text-muted-foreground">
-            All of this starts with one tap.
-          </p>
-          <a
-            href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center justify-center px-8 py-4 bg-foreground text-background text-[11px] uppercase tracking-[0.28em] hover:bg-accent transition-colors"
+    <Court>
+      <Title n="08" label="Take Action">
+        How you can be
+        <br />
+        <span className="italic text-accent">part of this.</span>
+      </Title>
+      <div className="grid border-t border-border sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((it, i) => (
+          <div
+            key={it.title}
+            className={`border-b border-border py-10 md:py-14 sm:px-8 lg:px-10 ${
+              i % 2 === 1 ? "sm:border-l sm:border-border" : ""
+            } ${i % 3 !== 0 ? "lg:border-l lg:border-border" : "lg:border-l-0"} ${
+              i % 2 === 0 ? "sm:pl-0" : ""
+            }`}
           >
-            Join Mohalle Mastane on WhatsApp
-          </a>
-          <p className="mt-4 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-            Free · Open to all residents
-          </p>
-        </div>
+            <div className="plate">{it.pre}</div>
+            <h3 className="mt-5 serif text-[21px] leading-tight tracking-[-0.01em] md:text-[25px]">
+              {it.title}
+            </h3>
+            <p className="mt-5 max-w-xs text-[14px] leading-[1.9] text-muted-foreground">
+              {it.body}
+            </p>
+          </div>
+        ))}
       </div>
-    </section>
+      <div className="mt-16 flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+        <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          All of this starts with one tap · Free · Open to all residents
+        </p>
+        <a
+          href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center justify-center bg-foreground px-9 py-5 text-[11px] uppercase tracking-[0.28em] text-background transition-colors hover:bg-accent"
+        >
+          Join on WhatsApp
+        </a>
+      </div>
+    </Court>
   );
 }
 
+/* 09 — the last dark room. */
 function Closing() {
   return (
-    <section className="on-dark concrete-dark light-shaft-dark text-background py-24 md:py-36 border-t border-border">
-      <div className="relative z-[1] mx-auto max-w-[900px] px-5 md:px-12 text-center">
-        <p className="serif italic text-[24px] md:text-[34px] leading-[1.4] text-background">
-          "Every neighbourhood has its own story.
-          <br />
-          Ours is one of coexistence, care,
-          <br />
-          and collective action."
-        </p>
-        <div className="mt-12 space-y-4 text-[14px] md:text-[15px] leading-[1.9] text-background/75">
-          <p>This is not a helpline. It is not a service.</p>
-          <p>It is a community that decided to take responsibility for its own streets.</p>
-          <p>Where the experienced guide the willing.</p>
-          <p>Where the youth bring energy to the elders' experience.</p>
-          <p>Where no case is too small and no person is too ordinary to make a difference.</p>
+    <Chamber>
+      <div className="mx-auto max-w-3xl">
+        <Quiet>
+          "Every neighbourhood has its own story. Ours is one of coexistence, care, and collective
+          action."
+        </Quiet>
+        <div className="mt-16 border-t border-background/12">
+          {[
+            "This is not a helpline. It is not a service.",
+            "It is a community that decided to take responsibility for its own streets.",
+            "Where the experienced guide the willing.",
+            "Where the youth bring energy to the elders' experience.",
+            "Where no case is too small and no person is too ordinary to make a difference.",
+          ].map((line) => (
+            <p
+              key={line}
+              className="border-b border-background/10 py-5 text-[14px] leading-[1.9] text-background/70 md:text-[15px]"
+            >
+              {line}
+            </p>
+          ))}
         </div>
-        <p className="mt-12 serif text-[18px] md:text-[22px] text-background">
+        <p className="mt-16 serif text-[22px] leading-[1.4] text-background md:text-[28px]">
           Mohalle Mastane is not run from above.
           <br />
-          <span className="italic text-accent">It lives in you</span> — in every member of this group.
+          <span className="italic text-accent">It lives in you</span> — in every member of this
+          group.
         </p>
       </div>
-    </section>
+    </Chamber>
   );
 }
 
 function FooterMini() {
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-12 py-12 md:py-16 grid md:grid-cols-3 gap-10">
+      <div className="mx-auto grid max-w-[1240px] gap-10 px-5 py-16 md:grid-cols-3 md:px-12 md:py-20">
         <div>
-          <div className="eyebrow mb-4">Get in touch</div>
-          <p className="text-[14px] leading-[1.85] text-foreground/85">
+          <div className="plate mb-6">Get in touch</div>
+          <p className="text-[14px] leading-[2] text-foreground/85">
             <a href="mailto:streetkind@gmail.com" className="hover:text-accent">
               streetkind@gmail.com
             </a>
@@ -501,19 +471,18 @@ function FooterMini() {
           </p>
         </div>
         <div>
-          <div className="eyebrow mb-4">Explore</div>
+          <div className="plate mb-6">Explore</div>
           <ul className="space-y-3 text-[14px]">
             <li><Link to="/" className="hover:text-accent">Home</Link></li>
             <li><Link to="/" hash="about" className="hover:text-accent">About</Link></li>
             <li><Link to="/events" className="hover:text-accent">Events & Volunteers</Link></li>
             <li><Link to="/fundraising" className="hover:text-accent">Fundraising</Link></li>
-            <li><Link to="/" hash="how" className="hover:text-accent">How It Works</Link></li>
-            <li><Link to="/" hash="impact" className="hover:text-accent">Impact</Link></li>
+            <li><Link to="/vision" className="hover:text-accent">Vision</Link></li>
           </ul>
         </div>
         <div>
-          <div className="eyebrow mb-4">Mohalle Mastane · 2025</div>
-          <p className="text-[13px] leading-[1.85] text-muted-foreground">
+          <div className="plate mb-6">Mohalle Mastane · 2025</div>
+          <p className="text-[13px] leading-[2] text-muted-foreground">
             Coexistence · Compassion · Togetherness
           </p>
         </div>
