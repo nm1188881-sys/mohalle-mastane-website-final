@@ -111,50 +111,78 @@
   --border: color-mix(in oklab, var(--background) 22%, transparent);
 }
 
-/* Real board-formed concrete wall (reference photo), warmed to paper */
+/* Rokko / Koshino register: smooth fair-faced concrete, no photo texture.
+   Raking daylight from the upper left, soft floor bounce, fine cement grain. */
 @utility concrete {
   background-color: var(--color-background);
   background-image:
+    /* raking light from a high slit */
+    linear-gradient(
+      118deg,
+      color-mix(in oklab, white 34%, transparent) 0%,
+      transparent 34%,
+      transparent 100%
+    ),
+    /* shadow settling into the lower right corner */
+    radial-gradient(
+      130% 100% at 8% 0%,
+      transparent 0%,
+      color-mix(in oklab, var(--color-foreground) 5%, transparent) 62%,
+      color-mix(in oklab, var(--color-foreground) 11%, transparent) 100%
+    ),
+    /* fine cement grain */
+    repeating-linear-gradient(
+      92deg,
+      color-mix(in oklab, var(--color-foreground) 2%, transparent) 0 1px,
+      transparent 1px 3px
+    ),
     linear-gradient(
       to bottom,
-      color-mix(in oklab, var(--color-background) 82%, transparent) 0%,
-      color-mix(in oklab, var(--color-background) 74%, transparent) 100%
-    ),
-    url("/__l5e/assets-v1/5967d792-5579-46b2-8bc3-6a3b8ce7d2d9/concrete-wall.png");
-  background-size: 100% 100%, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
+      var(--color-concrete-light) 0%,
+      var(--color-concrete) 100%
+    );
 }
 
-/* Soft interior render — quieter surface for wide sections */
+/* Water Temple pool: broad, quiet horizontal wash for wide sections */
 @utility concrete-room {
   background-color: var(--color-background);
   background-image:
     linear-gradient(
       to bottom,
-      color-mix(in oklab, var(--color-background) 78%, transparent) 0%,
-      color-mix(in oklab, var(--color-background) 88%, transparent) 100%
+      color-mix(in oklab, white 40%, transparent) 0%,
+      transparent 22%,
+      transparent 78%,
+      color-mix(in oklab, var(--color-foreground) 7%, transparent) 100%
     ),
-    url("/__l5e/assets-v1/7ce21b95-fdb0-4c00-9c7d-582d9858e352/concrete-room.png");
-  background-size: 100% 100%, cover;
-  background-position: center, center top;
-  background-repeat: no-repeat, no-repeat;
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in oklab, var(--color-foreground) 2%, transparent) 0 1px,
+      transparent 1px 4px
+    ),
+    linear-gradient(to bottom, var(--color-concrete) 0%, var(--color-concrete-light) 100%);
 }
 
-/* Same wall, dusk-lit: deep warm shadow for inverted sections */
+/* Church of the Light interior: unlit poured concrete, one cold shaft */
 @utility concrete-dark {
-  background-color: oklch(0.265 0.014 90);
+  background-color: oklch(0.235 0.010 100);
   background-image:
     linear-gradient(
-      160deg,
-      color-mix(in oklab, oklch(0.24 0.016 92) 78%, transparent) 0%,
-      color-mix(in oklab, oklch(0.28 0.018 100) 86%, transparent) 55%,
-      color-mix(in oklab, oklch(0.22 0.020 150) 90%, transparent) 100%
+      118deg,
+      color-mix(in oklab, white 12%, transparent) 0%,
+      transparent 30%,
+      transparent 100%
     ),
-    url("/__l5e/assets-v1/5967d792-5579-46b2-8bc3-6a3b8ce7d2d9/concrete-wall.png");
-  background-size: 100% 100%, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
+    radial-gradient(
+      140% 110% at 6% -8%,
+      color-mix(in oklab, white 8%, transparent) 0%,
+      transparent 55%
+    ),
+    repeating-linear-gradient(
+      92deg,
+      color-mix(in oklab, white 2%, transparent) 0 1px,
+      transparent 1px 3px
+    ),
+    linear-gradient(160deg, oklch(0.275 0.012 96) 0%, oklch(0.205 0.012 120) 100%);
 }
 
 
