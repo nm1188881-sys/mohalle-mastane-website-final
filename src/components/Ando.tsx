@@ -45,7 +45,7 @@ export function Chamber({
   return (
     <section
       id={id}
-      className={`on-dark concrete-dark formwork-dark relative border-t border-background/10 text-background ${
+      className={`on-dark water-temple relative border-t border-background/10 text-background ${
         tight ? "py-20 md:py-28" : "py-24 md:py-44"
       } ${className}`}
     >
