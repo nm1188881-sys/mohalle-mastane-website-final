@@ -255,6 +255,74 @@
   }
 }
 
+/* Water Temple — submerged concrete, concentric ripples, a still horizon.
+   Ando's Honpukuji: darkness held by water, light only where it meets the surface. */
+@utility water-temple {
+  position: relative;
+  isolation: isolate;
+  background-color: oklch(0.205 0.012 210);
+  background-image:
+    /* faint caustic ripples — concentric, irregular */
+    repeating-radial-gradient(
+      circle at 62% 38%,
+      transparent 0,
+      transparent 38px,
+      color-mix(in oklab, white 3%, transparent) 39px,
+      color-mix(in oklab, white 3%, transparent) 40px,
+      transparent 41px,
+      transparent 78px,
+      color-mix(in oklab, white 2.2%, transparent) 79px,
+      color-mix(in oklab, white 2.2%, transparent) 80px,
+      transparent 81px,
+      transparent 120px,
+      color-mix(in oklab, white 1.5%, transparent) 121px,
+      color-mix(in oklab, white 1.5%, transparent) 122px,
+      transparent 123px
+    ),
+    /* a single still horizon line */
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 58%,
+      color-mix(in oklab, white 5%, transparent) 58.2%,
+      color-mix(in oklab, white 5%, transparent) 58.8%,
+      transparent 59%
+    ),
+    /* cool shaft from above */
+    radial-gradient(
+      140% 80% at 50% 0%,
+      color-mix(in oklab, white 10%, transparent) 0%,
+      transparent 55%
+    ),
+    /* deep water gradient */
+    linear-gradient(
+      165deg,
+      oklch(0.235 0.014 205) 0%,
+      oklch(0.185 0.010 215) 55%,
+      oklch(0.160 0.010 220) 100%
+    );
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      /* fine cement grain, wet */
+      repeating-linear-gradient(
+        90deg,
+        color-mix(in oklab, white 2%, transparent) 0 1px,
+        transparent 1px 4px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        color-mix(in oklab, white 1.5%, transparent) 0 1px,
+        transparent 1px 5px
+      );
+  }
+}
+
 @utility formwork-dark {
   position: relative;
   isolation: isolate;
