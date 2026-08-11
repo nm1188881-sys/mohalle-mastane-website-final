@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.png.asset.json";
 import { SiteMenu } from "@/components/SiteMenu";
 import { Sprig } from "@/components/Sprig";
+import { VolunteerForm } from "@/components/VolunteerForm";
+
 
 export const Route = createFileRoute("/vision")({
   head: () => ({
