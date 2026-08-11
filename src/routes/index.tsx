@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { SiteMenu } from "@/components/SiteMenu";
 import { Sprig } from "@/components/Sprig";
+import { VolunteerForm } from "@/components/VolunteerForm";
+
 
 import logo from "@/assets/logo.png.asset.json";
 import neighbourhood from "@/assets/neighbourhood-cares.png.asset.json";
