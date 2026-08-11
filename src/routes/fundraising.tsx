@@ -576,34 +576,33 @@ function Donate() {
   );
 }
 
-/* Sterilisation — the inverted volume. */
-function Sterilisation() {
-  const steriCosts = [
-    { title: "One sterilisation", amount: "≈ ₹1,000", body: "Covers the full procedure, anaesthesia, and basic post-operative care for one animal." },
-    { title: "Post-op care", amount: "≈ ₹300–500", body: "Medicines, wound dressing, and monitoring for the recovery period." },
-    { title: "Transport & logistics", amount: "Community effort", body: "Volunteer-coordinated pickup and drop — your neighbourhood can help here too." },
+/* Surgeries & Advanced Care — the inverted volume. */
+function SurgeriesAndAdvancedCare() {
+  const careCosts = [
+    { title: "One emergency surgery", amount: "≈ ₹3,000–8,000", body: "Covers fracture repair, wound surgery, or life-saving procedures under anaesthesia and post-op monitoring." },
+    { title: "Advanced diagnostics", amount: "≈ ₹1,500–4,000", body: "Blood tests, X-rays, ultrasounds and specialist consultations to diagnose complex cases accurately." },
+    { title: "Long-term recovery", amount: "≈ ₹500/day", body: "Medicines, dressing, physiotherapy and safe shelter until the animal is stable enough to return to the street." },
   ];
   return (
     <Chamber>
-      <Plate n="09" label="Upcoming Initiative · Date to be announced" />
+      <Plate n="09" label="Critical Need · Ongoing" />
       <h2 className="mt-12 max-w-4xl serif text-[38px] leading-[1.02] tracking-[-0.03em] md:mt-16 md:text-[80px] md:leading-[0.96]">
-        Sterilisation
+        Surgeries &
         <br />
-        <span className="italic text-accent">campaign.</span>
+        <span className="italic text-accent">advanced care.</span>
       </h2>
       <div className="mt-14 grid gap-10 border-t border-background/12 pt-10 md:grid-cols-12 md:gap-16">
         <p className="text-[15px] leading-[2] text-background/70 md:col-span-6 md:text-[17px]">
-          We are planning a dedicated sterilisation campaign — and we need your support to make it
-          happen. This is not a blanket drive: it is specifically targeted at strays at high risk of
-          developing painful diseases, infections, and complications that go untreated on the
-          streets.
+          Most injured strays do not survive because the right care arrives too late — or never at
+          all. We are building a surgical and advanced care fund so that fractures, wounds,
+          infections and critical illnesses can be treated quickly, fully and without compromise.
         </p>
         <ul className="md:col-span-6">
           {[
-            "Prevents reproductive diseases and infections in vulnerable strays",
-            "Reduces long-term suffering — not just population numbers",
-            "Targeted only at animals identified as most in need",
-            "Every rupee raised goes directly to procedure costs and post-op care",
+            "Emergency surgeries for fractures, wounds and life-threatening injuries",
+            "Diagnostics and specialist consultations that local rescuers cannot afford alone",
+            "Post-operative recovery, medicines and rehabilitation in a safe space",
+            "Every contribution goes directly to veterinary costs and aftercare",
           ].map((p) => (
             <li
               key={p}
@@ -616,7 +615,7 @@ function Sterilisation() {
         </ul>
       </div>
       <div className="mt-16 grid border-t border-background/12 md:grid-cols-3">
-        {steriCosts.map((c, i) => (
+        {careCosts.map((c, i) => (
           <article
             key={c.title}
             className={`border-b border-background/10 py-10 md:border-b-0 md:py-14 ${
@@ -631,16 +630,16 @@ function Sterilisation() {
       </div>
       <div className="mt-14 flex flex-col gap-4 sm:flex-row">
         <a
-          href="mailto:hello@streetkind.org?subject=Support the sterilisation campaign"
+          href="mailto:hello@streetkind.org?subject=Support surgeries and advanced care"
           className="inline-flex items-center justify-center bg-accent px-8 py-4 text-[11px] uppercase tracking-[0.26em] text-ink transition-colors hover:bg-background hover:text-ink"
         >
-          Support this campaign →
+          Support this fund →
         </a>
         <a
-          href="mailto:hello@streetkind.org?subject=Notify me — sterilisation campaign"
+          href="mailto:hello@streetkind.org?subject=Notify me — surgeries and advanced care"
           className="inline-flex items-center justify-center border border-background/30 px-8 py-4 text-[11px] uppercase tracking-[0.26em] text-background transition-colors hover:border-accent hover:text-accent"
         >
-          Notify me when the date is set
+          Notify me about medical updates
         </a>
       </div>
     </Chamber>
