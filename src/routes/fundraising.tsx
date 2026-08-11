@@ -201,7 +201,7 @@ function System() {
   ];
   const inside = [
     { title: "Veterinary Hospital", body: "OPD, OT, ICU, X-ray lab, isolation wards for rabies & distemper, post-operative recovery, species-specific enclosures.", tag: "Private" },
-    { title: "Rescue & Emergency", body: "24/7 mobile rescue units, emergency response, sterilization drives, coordination with municipal bodies.", tag: "Private" },
+    { title: "Rescue & Emergency", body: "24/7 mobile rescue units, emergency response, surgery & advanced care coordination with municipal bodies.", tag: "Private" },
     { title: "Rescuer Accommodation", body: "Safe, dignified housing for local rescuers, veterinarians, and care staff — integrated into the space.", tag: "Private" },
     { title: "Vegan Café", body: "Conscious food, warm community interaction, contribution to rescue efforts — an inviting space where every meal matters.", tag: "Public" },
     { title: "Art & Exhibition Studio", body: "Animal narratives, coexistence art, local installations. A space where empathy is the medium and awareness is the message.", tag: "Public" },
