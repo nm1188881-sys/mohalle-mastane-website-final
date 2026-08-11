@@ -386,6 +386,12 @@ function Join() {
             Share Your Story
           </a>
         </div>
+
+        <div className="mt-16 md:mt-24 border-t border-border pt-12">
+          <div className="plate mb-8">Volunteer Sign-Up</div>
+          <VolunteerForm id="volunteer" />
+        </div>
+
       </div>
     </section>
   );
