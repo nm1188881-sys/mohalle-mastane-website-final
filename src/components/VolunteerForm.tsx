@@ -133,7 +133,7 @@ export function VolunteerForm({ id = "volunteer" }: { id?: string }) {
         </button>
         {sent && (
           <p className="text-[12px] uppercase tracking-[0.2em] text-accent">
-            Thank you — your email draft is ready to send.
+            Thank you — the application form is open in a new tab.
           </p>
         )}
       </div>
