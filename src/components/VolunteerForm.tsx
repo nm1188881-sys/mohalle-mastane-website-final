@@ -30,6 +30,9 @@ export function VolunteerForm({ id = "volunteer" }: { id?: string }) {
   const set = (key: keyof typeof values) => (v: string) =>
     setValues((prev) => ({ ...prev, [key]: v }));
 
+  const formUrl =
+    "https://docs.google.com/forms/d/e/1FAIpQLScb9aMk8RyUVukTG2z65yAGP7dczPRPhn5MuYIT6mg6cj_NOg/viewform";
+
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(values);
@@ -43,17 +46,7 @@ export function VolunteerForm({ id = "volunteer" }: { id?: string }) {
       return;
     }
     setErrors({});
-    const d = parsed.data;
-    const body = [
-      `Name: ${d.name}`,
-      `City: ${d.city}`,
-      `Availability: ${d.availability}`,
-      "",
-      d.message || "(no message)",
-    ].join("\n");
-    window.location.href = `mailto:hello@streetkind.org?subject=${encodeURIComponent(
-      "Volunteer sign-up",
-    )}&body=${encodeURIComponent(body)}`;
+    window.open(formUrl, "_blank", "noopener,noreferrer");
     setSent(true);
   };
 
