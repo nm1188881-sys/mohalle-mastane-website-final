@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.png.asset.json";
 import { SiteMenu } from "@/components/SiteMenu";
 import { Sprig } from "@/components/Sprig";
+import { VolunteerForm } from "@/components/VolunteerForm";
+
 
 export const Route = createFileRoute("/vision")({
   head: () => ({
@@ -163,8 +165,14 @@ function VisionPage() {
               Volunteer With Us
             </Link>
           </div>
+
+          <div className="mt-16 md:mt-24 border-t border-border pt-12">
+            <div className="plate mb-8">Volunteer Sign-Up</div>
+            <VolunteerForm id="vision-volunteer" />
+          </div>
         </div>
       </section>
+
 
       <section className="on-dark water-temple text-background py-24 md:py-36 border-t border-border">
         <div className="relative z-[1] mx-auto max-w-[900px] px-5 md:px-12 text-center">

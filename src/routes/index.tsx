@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { SiteMenu } from "@/components/SiteMenu";
 import { Sprig } from "@/components/Sprig";
+import { VolunteerForm } from "@/components/VolunteerForm";
+
 
 import logo from "@/assets/logo.png.asset.json";
 import neighbourhood from "@/assets/neighbourhood-cares.png.asset.json";
@@ -386,6 +388,12 @@ function Join() {
             Share Your Story
           </a>
         </div>
+
+        <div className="mt-16 md:mt-24 border-t border-border pt-12">
+          <div className="plate mb-8">Volunteer Sign-Up</div>
+          <VolunteerForm id="volunteer" />
+        </div>
+
       </div>
     </section>
   );
