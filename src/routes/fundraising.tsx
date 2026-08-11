@@ -316,7 +316,7 @@ function Roadmap() {
     {
       phase: "The Present",
       title: "Standing with the rescuers",
-      body: "Right now, we support rescuers across different neighbourhoods and help the animals they care for — through feeding, rescue, sterilisation, foster, medication, and overall day-to-day care.",
+      body: "Right now, we support rescuers across different neighbourhoods and help the animals they care for — through feeding, rescue, surgeries, advanced care, foster, medication, and overall day-to-day care.",
     },
     {
       phase: "The Future",
@@ -362,12 +362,12 @@ function Donate() {
   const tiers = [
     { name: "Supporter", amount: "₹100", body: "Feeds a stray animal for one week. A simple act with a real difference." },
     { name: "Care Giver", amount: "₹500", body: "Covers medicines and first aid for one injured animal in emergency care." },
-    { name: "Healer", amount: "₹1,000", body: "Supports one full surgical sterilisation — breaking the cycle for generations of strays." },
+    { name: "Healer", amount: "₹1,000", body: "Supports one emergency surgery or advanced diagnostic for an injured stray." },
     { name: "Guardian", amount: "₹2,500", body: "Sponsors a full month of care — food, shelter, and treatment — for one animal." },
   ];
   const uses = [
     { title: "Mobile Rescue Units", body: "Fuel, equipment, and operations for emergency animal rescue across the city's neighbourhoods." },
-    { title: "Veterinary Care", body: "Surgeries, medicines, post-operative care, sterilisation drives, and specialist treatment." },
+    { title: "Veterinary Care", body: "Surgeries, advanced diagnostics, medicines, post-operative care, and specialist treatment." },
     { title: "Daily Feeding & Shelter", body: "Regular food, clean water, and safe shelter for injured and recovering animals." },
     { title: "Community Programs", body: "Street Circles, volunteer training, awareness campaigns, and humane education." },
   ];
@@ -734,7 +734,7 @@ function FundraisingPage() {
       <Opportunity />
       <Roadmap />
       <Donate />
-      <Sterilisation />
+      <SurgeriesAndAdvancedCare />
       <Fundraise />
       <Closing />
       <FooterMini />
