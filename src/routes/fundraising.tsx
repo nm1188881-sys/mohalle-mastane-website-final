@@ -87,41 +87,6 @@ function Hero() {
   );
 }
 
-function Reality() {
-  const stats = [
-    { n: "1,220", label: "Registered cruelty complaints in Odisha (2023–24)" },
-    { n: "42.9%", label: "Cruelty rate among reported cases" },
-    { n: "21.4%", label: "Survival rate for injured stray animals" },
-  ];
-  return (
-    <Court>
-      <Title n="01" label="The Reality on Our Streets">
-        A city's silent <span className="italic text-accent">crisis.</span>
-      </Title>
-      <div className="grid gap-10 md:grid-cols-12 md:gap-16">
-        <p className="max-w-2xl text-[15px] leading-[2] text-muted-foreground md:col-span-7 md:text-[17px]">
-          In the city today, a single government vet facility serves nearly{" "}
-          <span className="text-foreground">100 cases per day</span> from a single hall — with no
-          isolation wards, no diagnostic systems, no species-specific care. As development expands,
-          animals are displaced, injured, and left without shelter or treatment. Local rescuers are
-          sheltering 20–30 animals in their own homes. This cannot continue.
-        </p>
-      </div>
-      <div className="mt-16 grid border-t border-border md:grid-cols-3">
-        {stats.map((s, i) => (
-          <div
-            key={s.n}
-            className={`${i !== 0 ? "border-t border-border md:border-l md:border-t-0 md:pl-12" : ""} ${
-              i !== 2 ? "md:pr-12" : ""
-            }`}
-          >
-            <Figure n={s.n} label={s.label} />
-          </div>
-        ))}
-      </div>
-    </Court>
-  );
-}
 
 function Gap() {
   const items = [
@@ -726,7 +691,6 @@ function FundraisingPage() {
     <main className="min-h-dvh bg-background text-foreground">
       <Nav />
       <Hero />
-      <Reality />
       <Gap />
       <Concept />
       <System />
