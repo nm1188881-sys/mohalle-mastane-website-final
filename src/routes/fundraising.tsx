@@ -58,7 +58,7 @@ function Nav() {
 /* The chapel: a dark chamber, one slit of light. */
 function Hero() {
   return (
-    <section className="on-dark concrete-dark formwork-dark light-slit relative flex min-h-[94svh] flex-col justify-end overflow-hidden pb-16 pt-32 text-background md:pb-28">
+    <section className="on-dark water-temple light-slit relative flex min-h-[94svh] flex-col justify-end overflow-hidden pb-16 pt-32 text-background md:pb-28">
       <div className="pointer-events-none absolute inset-y-0 left-[7%] w-px bg-background/10" />
       <div className="pointer-events-none absolute inset-y-0 right-[7%] hidden w-px bg-background/10 md:block" />
       <div className="relative z-[1] mx-auto w-full max-w-[1240px] px-5 md:px-12">
@@ -743,7 +743,7 @@ function ContributeBlock({
   return (
     <div
       id="contribute"
-      className="on-dark concrete-dark formwork-dark relative min-w-0 text-background"
+      className="on-dark water-temple relative min-w-0 text-background"
     >
       <div className="relative z-[1] p-7 sm:p-9">
         <div className="flex items-baseline justify-between gap-4 border-b border-background/15 pb-5">
