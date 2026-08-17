@@ -72,7 +72,7 @@ function Hero() {
 
       <div className="relative mx-auto w-full max-w-[1240px] px-5 md:px-12">
         <Plate n="01" label="Who We Are · 150 Members Strong" />
-        <h1 className="mt-12 max-w-5xl serif text-[46px] leading-[1.0] tracking-[-0.035em] text-foreground md:mt-20 md:text-[104px] md:leading-[0.94]">
+        <h1 className="mt-12 max-w-5xl serif font-bold text-[46px] leading-[1.0] tracking-[-0.035em] text-foreground md:mt-20 md:text-[104px] md:leading-[0.94]">
           Not an organisation
           <br />
           sitting in one place.
