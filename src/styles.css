@@ -111,79 +111,77 @@
   --border: color-mix(in oklab, var(--background) 22%, transparent);
 }
 
-/* Rokko / Koshino register: smooth fair-faced concrete, no photo texture.
-   Raking daylight from the upper left, soft floor bounce, fine cement grain. */
+/* Light slab — one plain poured surface, a single soft wash of daylight
+   falling from the upper left. No grain lines, no panels, no texture. */
 @utility concrete {
+  position: relative;
+  isolation: isolate;
   background-color: var(--color-background);
   background-image:
-    /* raking light from a high slit */
-    linear-gradient(
-      118deg,
-      color-mix(in oklab, white 34%, transparent) 0%,
-      transparent 34%,
-      transparent 100%
-    ),
-    /* shadow settling into the lower right corner */
     radial-gradient(
-      130% 100% at 8% 0%,
-      transparent 0%,
-      color-mix(in oklab, var(--color-foreground) 5%, transparent) 62%,
-      color-mix(in oklab, var(--color-foreground) 11%, transparent) 100%
+      120% 90% at 20% -10%,
+      color-mix(in oklab, white 42%, transparent) 0%,
+      transparent 62%
     ),
-    /* fine cement grain */
-    repeating-linear-gradient(
-      92deg,
-      color-mix(in oklab, var(--color-foreground) 2%, transparent) 0 1px,
-      transparent 1px 3px
+    radial-gradient(
+      100% 70% at 92% 112%,
+      color-mix(in oklab, var(--color-foreground) 8%, transparent) 0%,
+      transparent 60%
     ),
     linear-gradient(
-      to bottom,
+      168deg,
       var(--color-concrete-light) 0%,
       var(--color-concrete) 100%
     );
 }
 
-/* Water Temple pool: broad, quiet horizontal wash for wide sections */
+/* Same plain pour, kept as an alias for wide sections */
 @utility concrete-room {
+  position: relative;
+  isolation: isolate;
   background-color: var(--color-background);
   background-image:
-    linear-gradient(
-      to bottom,
-      color-mix(in oklab, white 40%, transparent) 0%,
-      transparent 22%,
-      transparent 78%,
-      color-mix(in oklab, var(--color-foreground) 7%, transparent) 100%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      color-mix(in oklab, var(--color-foreground) 2%, transparent) 0 1px,
-      transparent 1px 4px
-    ),
-    linear-gradient(to bottom, var(--color-concrete) 0%, var(--color-concrete-light) 100%);
-}
-
-/* Church of the Light interior: unlit poured concrete, one cold shaft */
-@utility concrete-dark {
-  background-color: oklch(0.235 0.010 100);
-  background-image:
-    linear-gradient(
-      118deg,
-      color-mix(in oklab, white 12%, transparent) 0%,
-      transparent 30%,
-      transparent 100%
+    radial-gradient(
+      120% 90% at 20% -10%,
+      color-mix(in oklab, white 42%, transparent) 0%,
+      transparent 62%
     ),
     radial-gradient(
-      140% 110% at 6% -8%,
-      color-mix(in oklab, white 8%, transparent) 0%,
-      transparent 55%
+      100% 70% at 92% 112%,
+      color-mix(in oklab, var(--color-foreground) 8%, transparent) 0%,
+      transparent 60%
     ),
-    repeating-linear-gradient(
-      92deg,
-      color-mix(in oklab, white 2%, transparent) 0 1px,
-      transparent 1px 3px
-    ),
-    linear-gradient(160deg, oklch(0.275 0.012 96) 0%, oklch(0.205 0.012 120) 100%);
+    linear-gradient(
+      168deg,
+      var(--color-concrete-light) 0%,
+      var(--color-concrete) 100%
+    );
 }
+
+/* Dark slab — identical pour to .water-temple */
+@utility concrete-dark {
+  position: relative;
+  isolation: isolate;
+  background-color: oklch(0.215 0.010 70);
+  background-image:
+    radial-gradient(
+      120% 90% at 22% -10%,
+      color-mix(in oklab, white 13%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      100% 70% at 90% 110%,
+      color-mix(in oklab, black 26%, transparent) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      168deg,
+      oklch(0.255 0.012 72) 0%,
+      oklch(0.205 0.010 76) 58%,
+      oklch(0.175 0.008 80) 100%
+    );
+}
+
 
 
 
@@ -232,27 +230,27 @@
 }
 
 /* ── Tadao Ando vocabulary ──────────────────────────────────
-   Fair-faced concrete: 1800×900 formwork panels, tie holes at
-   the quarter points, nothing else. Silence as material.      */
+   One plain poured slab. No panel lines, no tie holes.        */
 @utility formwork {
   position: relative;
   isolation: isolate;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image:
-      linear-gradient(to right, color-mix(in oklab, var(--color-foreground) 6%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in oklab, var(--color-foreground) 6%, transparent) 1px, transparent 1px),
-      radial-gradient(circle at 90px 45px, color-mix(in oklab, var(--color-foreground) 15%, transparent) 0 2px, transparent 2.6px),
-      radial-gradient(circle at 270px 45px, color-mix(in oklab, var(--color-foreground) 15%, transparent) 0 2px, transparent 2.6px),
-      radial-gradient(circle at 90px 135px, color-mix(in oklab, var(--color-foreground) 15%, transparent) 0 2px, transparent 2.6px),
-      radial-gradient(circle at 270px 135px, color-mix(in oklab, var(--color-foreground) 15%, transparent) 0 2px, transparent 2.6px);
-    background-size: 360px 180px;
-  }
+  background-color: var(--color-background);
+  background-image:
+    radial-gradient(
+      120% 90% at 20% -10%,
+      color-mix(in oklab, white 42%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      100% 70% at 92% 112%,
+      color-mix(in oklab, var(--color-foreground) 8%, transparent) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      168deg,
+      var(--color-concrete-light) 0%,
+      var(--color-concrete) 100%
+    );
 }
 
 /* Dark slab — Chichu register: one monolithic pour, a single soft wash of
@@ -281,25 +279,28 @@
 }
 
 
+/* Alias of the dark plain pour */
 @utility formwork-dark {
   position: relative;
   isolation: isolate;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(to right, color-mix(in oklab, white 5%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in oklab, white 5%, transparent) 1px, transparent 1px),
-      radial-gradient(circle at 90px 45px, color-mix(in oklab, white 10%, transparent) 0 2px, transparent 2.6px),
-      radial-gradient(circle at 270px 45px, color-mix(in oklab, white 10%, transparent) 0 2px, transparent 2.6px),
-      radial-gradient(circle at 90px 135px, color-mix(in oklab, white 10%, transparent) 0 2px, transparent 2.6px),
-      radial-gradient(circle at 270px 135px, color-mix(in oklab, white 10%, transparent) 0 2px, transparent 2.6px);
-    background-size: 360px 180px;
-  }
+  background-color: oklch(0.215 0.010 70);
+  background-image:
+    radial-gradient(
+      120% 90% at 22% -10%,
+      color-mix(in oklab, white 13%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      100% 70% at 90% 110%,
+      color-mix(in oklab, black 26%, transparent) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      168deg,
+      oklch(0.255 0.012 72) 0%,
+      oklch(0.205 0.010 76) 58%,
+      oklch(0.175 0.008 80) 100%
+    );
 }
 
 /* Church of the Light — a cruciform slit cut through the wall */
