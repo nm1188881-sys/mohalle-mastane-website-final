@@ -3,6 +3,9 @@ import logo from "@/assets/logo.png.asset.json";
 import { SiteMenu } from "@/components/SiteMenu";
 import { ProcessJourney } from "@/components/ProcessJourney";
 import { Chamber, Court, Figure, Plate, Quiet, Row, Title } from "@/components/Ando";
+import strayDog from "@/assets/stray-dog-courtyard.jpg.asset.json";
+import strayCat from "@/assets/stray-cat-corridor.jpg.asset.json";
+import strayDogs from "@/assets/stray-dogs-resting.jpg.asset.json";
 
 export const Route = createFileRoute("/community")({
   head: () => ({
