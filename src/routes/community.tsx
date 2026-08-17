@@ -130,7 +130,62 @@ function Stats() {
   );
 }
 
-/* 03 — four principles, held apart by air. */
+/* 03 — the neighbourhood's faces: animals in the architecture. */
+function Faces() {
+  return (
+    <Court>
+      <Plate n="03" label="The Neighbourhood" />
+      <h2 className="mt-12 max-w-4xl serif font-bold text-[34px] leading-[1.06] tracking-[-0.02em] md:mt-16 md:text-[64px] md:leading-[1.02]">
+        The faces we pass by.
+        <br />
+        <span className="italic text-accent">The lives we share a lane with.</span>
+      </h2>
+      <div className="mt-12 grid gap-5 md:grid-cols-3 md:gap-8">
+        <figure>
+          <img
+            src={strayDog.url}
+            alt="A street dog resting in a sunlit concrete courtyard"
+            loading="lazy"
+            width={1200}
+            height={900}
+            className="h-[280px] w-full object-cover md:h-[420px]"
+          />
+          <figcaption className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+            Street dog · resting in the light
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src={strayCat.url}
+            alt="A street cat paused in a narrow concrete corridor"
+            loading="lazy"
+            width={1200}
+            height={900}
+            className="h-[280px] w-full object-cover md:h-[420px]"
+          />
+          <figcaption className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+            Street cat · watching from the corridor
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src={strayDogs.url}
+            alt="Two stray dogs sleeping together on a concrete floor"
+            loading="lazy"
+            width={1200}
+            height={900}
+            className="h-[280px] w-full object-cover md:h-[420px]"
+          />
+          <figcaption className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+            Companions · warmth in the same corner
+          </figcaption>
+        </figure>
+      </div>
+    </Court>
+  );
+}
+
+/* 04 — four principles, held apart by air. */
 function Pillars() {
   const items = [
     { title: "Every message matters", body: "Every photo you share of an injured animal — we see it, we act on it." },
