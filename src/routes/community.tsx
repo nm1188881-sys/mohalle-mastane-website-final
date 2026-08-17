@@ -197,8 +197,8 @@ function Pillars() {
     <Court>
       <div className="grid gap-10 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-4">
-          <Plate n="03" label="Principles" />
-          <p className="mt-10 serif text-[26px] leading-[1.2] tracking-[-0.01em] md:text-[34px]">
+          <Plate n="04" label="Principles" />
+          <p className="mt-10 serif font-bold text-[26px] leading-[1.2] tracking-[-0.01em] md:text-[34px]">
             Four rules,
             <br />
             <span className="italic text-accent">nothing more.</span>
