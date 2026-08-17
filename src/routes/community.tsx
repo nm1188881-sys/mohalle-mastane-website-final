@@ -3,6 +3,9 @@ import logo from "@/assets/logo.png.asset.json";
 import { SiteMenu } from "@/components/SiteMenu";
 import { ProcessJourney } from "@/components/ProcessJourney";
 import { Chamber, Court, Figure, Plate, Quiet, Row, Title } from "@/components/Ando";
+import strayDog from "@/assets/stray-dog-courtyard.jpg.asset.json";
+import strayCat from "@/assets/stray-cat-corridor.jpg.asset.json";
+import strayDogs from "@/assets/stray-dogs-resting.jpg.asset.json";
 
 export const Route = createFileRoute("/community")({
   head: () => ({
@@ -69,7 +72,7 @@ function Hero() {
 
       <div className="relative mx-auto w-full max-w-[1240px] px-5 md:px-12">
         <Plate n="01" label="Who We Are · 150 Members Strong" />
-        <h1 className="mt-12 max-w-5xl serif text-[46px] leading-[1.0] tracking-[-0.035em] text-foreground md:mt-20 md:text-[104px] md:leading-[0.94]">
+        <h1 className="mt-12 max-w-5xl serif font-bold text-[46px] leading-[1.0] tracking-[-0.035em] text-foreground md:mt-20 md:text-[104px] md:leading-[0.94]">
           Not an organisation
           <br />
           sitting in one place.
@@ -127,7 +130,62 @@ function Stats() {
   );
 }
 
-/* 03 — four principles, held apart by air. */
+/* 03 — the neighbourhood's faces: animals in the architecture. */
+function Faces() {
+  return (
+    <Court>
+      <Plate n="03" label="The Neighbourhood" />
+      <h2 className="mt-12 max-w-4xl serif font-bold text-[34px] leading-[1.06] tracking-[-0.02em] md:mt-16 md:text-[64px] md:leading-[1.02]">
+        The faces we pass by.
+        <br />
+        <span className="italic text-accent">The lives we share a lane with.</span>
+      </h2>
+      <div className="mt-12 grid gap-5 md:grid-cols-3 md:gap-8">
+        <figure>
+          <img
+            src={strayDog.url}
+            alt="A street dog resting in a sunlit concrete courtyard"
+            loading="lazy"
+            width={1200}
+            height={900}
+            className="h-[280px] w-full object-cover md:h-[420px]"
+          />
+          <figcaption className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+            Street dog · resting in the light
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src={strayCat.url}
+            alt="A street cat paused in a narrow concrete corridor"
+            loading="lazy"
+            width={1200}
+            height={900}
+            className="h-[280px] w-full object-cover md:h-[420px]"
+          />
+          <figcaption className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+            Street cat · watching from the corridor
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src={strayDogs.url}
+            alt="Two stray dogs sleeping together on a concrete floor"
+            loading="lazy"
+            width={1200}
+            height={900}
+            className="h-[280px] w-full object-cover md:h-[420px]"
+          />
+          <figcaption className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+            Companions · warmth in the same corner
+          </figcaption>
+        </figure>
+      </div>
+    </Court>
+  );
+}
+
+/* 04 — four principles, held apart by air. */
 function Pillars() {
   const items = [
     { title: "Every message matters", body: "Every photo you share of an injured animal — we see it, we act on it." },
@@ -139,8 +197,8 @@ function Pillars() {
     <Court>
       <div className="grid gap-10 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-4">
-          <Plate n="03" label="Principles" />
-          <p className="mt-10 serif text-[26px] leading-[1.2] tracking-[-0.01em] md:text-[34px]">
+          <Plate n="04" label="Principles" />
+          <p className="mt-10 serif font-bold text-[26px] leading-[1.2] tracking-[-0.01em] md:text-[34px]">
             Four rules,
             <br />
             <span className="italic text-accent">nothing more.</span>
@@ -158,7 +216,7 @@ function Pillars() {
   );
 }
 
-/* 04 — proportion drawn as measured bars. */
+/* 05 — proportion drawn as measured bars. */
 function Composition() {
   const rows = [
     { pct: 10, label: "Active rescuers on the ground" },
@@ -179,7 +237,7 @@ function Composition() {
   ];
   return (
     <Court>
-      <Title n="04" label="150 Members Strong" lead="Every person in this group matters — whether you rescue actively, contribute occasionally, or are still finding your way in.">
+      <Title n="05" label="150 Members Strong" lead="Every person in this group matters — whether you rescue actively, contribute occasionally, or are still finding your way in.">
         Growing,
         <br />
         <span className="italic text-accent">together.</span>
@@ -226,11 +284,11 @@ function Composition() {
   );
 }
 
-/* 05 — the passage: how a case walks through the building. */
+/* 06 — the passage: how a case walks through the building. */
 function Process() {
   return (
     <Court>
-      <Title n="05" label="The Process" lead="Five steps, drawn out — from the moment you notice an animal in trouble to the moment the case comes back to the group as an update.">
+      <Title n="06" label="The Process" lead="Five steps, drawn out — from the moment you notice an animal in trouble to the moment the case comes back to the group as an update.">
         How this community
         <br />
         <span className="italic text-accent">functions.</span>
@@ -251,7 +309,7 @@ function Process() {
   );
 }
 
-/* 06 — the record wall. */
+/* 07 — the record wall. */
 function Cases() {
   const cases = [
     {
@@ -279,7 +337,7 @@ function Cases() {
   ];
   return (
     <Chamber>
-      <Title n="06" label="Real Stories" lead="Every rescue in this group is documented — so every animal is accounted for, and every person who helped is remembered.">
+      <Title n="07" label="Real Stories" lead="Every rescue in this group is documented — so every animal is accounted for, and every person who helped is remembered.">
         What every case
         <br />
         <span className="italic text-accent">looks like.</span>
@@ -331,12 +389,12 @@ function Cases() {
   );
 }
 
-/* 07 — the address to the young. */
+/* 08 — the address to the young. */
 function Youth() {
   return (
     <Court>
-      <Plate n="07" label="Especially, to the youth of this neighbourhood" />
-      <h2 className="mt-12 max-w-4xl serif text-[36px] leading-[1.05] tracking-[-0.03em] md:mt-16 md:text-[76px] md:leading-[0.98]">
+      <Plate n="08" label="Especially, to the youth of this neighbourhood" />
+      <h2 className="mt-12 max-w-4xl serif font-bold text-[36px] leading-[1.05] tracking-[-0.03em] md:mt-16 md:text-[76px] md:leading-[0.98]">
         You have the energy,
         <br />
         the reach, the awareness
@@ -362,7 +420,7 @@ function Youth() {
   );
 }
 
-/* 08 — the doors: every way in, given equal weight. */
+/* 09 — the doors: every way in, given equal weight. */
 function TakeAction() {
   const items = [
     { pre: "If you see", title: "An injured or sick animal", body: "Post a photo and location in the group. That is enough to start." },
@@ -374,7 +432,7 @@ function TakeAction() {
   ];
   return (
     <Court>
-      <Title n="08" label="Take Action">
+      <Title n="09" label="Take Action">
         How you can be
         <br />
         <span className="italic text-accent">part of this.</span>
@@ -416,7 +474,7 @@ function TakeAction() {
   );
 }
 
-/* 09 — the last dark room. */
+/* 10 — the last dark room. */
 function Closing() {
   return (
     <Chamber>
@@ -497,6 +555,7 @@ function CommunityPage() {
       <Nav />
       <Hero />
       <Stats />
+      <Faces />
       <Pillars />
       <Composition />
       <Process />
