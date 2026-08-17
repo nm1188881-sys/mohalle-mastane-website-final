@@ -216,7 +216,7 @@ function Pillars() {
   );
 }
 
-/* 04 — proportion drawn as measured bars. */
+/* 05 — proportion drawn as measured bars. */
 function Composition() {
   const rows = [
     { pct: 10, label: "Active rescuers on the ground" },
@@ -237,7 +237,7 @@ function Composition() {
   ];
   return (
     <Court>
-      <Title n="04" label="150 Members Strong" lead="Every person in this group matters — whether you rescue actively, contribute occasionally, or are still finding your way in.">
+      <Title n="05" label="150 Members Strong" lead="Every person in this group matters — whether you rescue actively, contribute occasionally, or are still finding your way in.">
         Growing,
         <br />
         <span className="italic text-accent">together.</span>
@@ -284,11 +284,11 @@ function Composition() {
   );
 }
 
-/* 05 — the passage: how a case walks through the building. */
+/* 06 — the passage: how a case walks through the building. */
 function Process() {
   return (
     <Court>
-      <Title n="05" label="The Process" lead="Five steps, drawn out — from the moment you notice an animal in trouble to the moment the case comes back to the group as an update.">
+      <Title n="06" label="The Process" lead="Five steps, drawn out — from the moment you notice an animal in trouble to the moment the case comes back to the group as an update.">
         How this community
         <br />
         <span className="italic text-accent">functions.</span>
@@ -309,7 +309,7 @@ function Process() {
   );
 }
 
-/* 06 — the record wall. */
+/* 07 — the record wall. */
 function Cases() {
   const cases = [
     {
@@ -337,7 +337,7 @@ function Cases() {
   ];
   return (
     <Chamber>
-      <Title n="06" label="Real Stories" lead="Every rescue in this group is documented — so every animal is accounted for, and every person who helped is remembered.">
+      <Title n="07" label="Real Stories" lead="Every rescue in this group is documented — so every animal is accounted for, and every person who helped is remembered.">
         What every case
         <br />
         <span className="italic text-accent">looks like.</span>
@@ -389,12 +389,12 @@ function Cases() {
   );
 }
 
-/* 07 — the address to the young. */
+/* 08 — the address to the young. */
 function Youth() {
   return (
     <Court>
-      <Plate n="07" label="Especially, to the youth of this neighbourhood" />
-      <h2 className="mt-12 max-w-4xl serif text-[36px] leading-[1.05] tracking-[-0.03em] md:mt-16 md:text-[76px] md:leading-[0.98]">
+      <Plate n="08" label="Especially, to the youth of this neighbourhood" />
+      <h2 className="mt-12 max-w-4xl serif font-bold text-[36px] leading-[1.05] tracking-[-0.03em] md:mt-16 md:text-[76px] md:leading-[0.98]">
         You have the energy,
         <br />
         the reach, the awareness
@@ -420,7 +420,7 @@ function Youth() {
   );
 }
 
-/* 08 — the doors: every way in, given equal weight. */
+/* 09 — the doors: every way in, given equal weight. */
 function TakeAction() {
   const items = [
     { pre: "If you see", title: "An injured or sick animal", body: "Post a photo and location in the group. That is enough to start." },
@@ -432,7 +432,7 @@ function TakeAction() {
   ];
   return (
     <Court>
-      <Title n="08" label="Take Action">
+      <Title n="09" label="Take Action">
         How you can be
         <br />
         <span className="italic text-accent">part of this.</span>
@@ -474,7 +474,7 @@ function TakeAction() {
   );
 }
 
-/* 09 — the last dark room. */
+/* 10 — the last dark room. */
 function Closing() {
   return (
     <Chamber>
@@ -555,6 +555,7 @@ function CommunityPage() {
       <Nav />
       <Hero />
       <Stats />
+      <Faces />
       <Pillars />
       <Composition />
       <Process />
