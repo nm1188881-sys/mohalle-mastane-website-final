@@ -230,27 +230,27 @@
 }
 
 /* ── Tadao Ando vocabulary ──────────────────────────────────
-   Fair-faced concrete: 1800×900 formwork panels, tie holes at
-   the quarter points, nothing else. Silence as material.      */
+   One plain poured slab. No panel lines, no tie holes.        */
 @utility formwork {
   position: relative;
   isolation: isolate;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image:
-      linear-gradient(to right, color-mix(in oklab, var(--color-foreground) 6%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in oklab, var(--color-foreground) 6%, transparent) 1px, transparent 1px),
-      radial-gradient(circle at 90px 45px, color-mix(in oklab, var(--color-foreground) 15%, transparent) 0 2px, transparent 2.6px),
-      radial-gradient(circle at 270px 45px, color-mix(in oklab, var(--color-foreground) 15%, transparent) 0 2px, transparent 2.6px),
-      radial-gradient(circle at 90px 135px, color-mix(in oklab, var(--color-foreground) 15%, transparent) 0 2px, transparent 2.6px),
-      radial-gradient(circle at 270px 135px, color-mix(in oklab, var(--color-foreground) 15%, transparent) 0 2px, transparent 2.6px);
-    background-size: 360px 180px;
-  }
+  background-color: var(--color-background);
+  background-image:
+    radial-gradient(
+      120% 90% at 20% -10%,
+      color-mix(in oklab, white 42%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      100% 70% at 92% 112%,
+      color-mix(in oklab, var(--color-foreground) 8%, transparent) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      168deg,
+      var(--color-concrete-light) 0%,
+      var(--color-concrete) 100%
+    );
 }
 
 /* Dark slab — Chichu register: one monolithic pour, a single soft wash of
