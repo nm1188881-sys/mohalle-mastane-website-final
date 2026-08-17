@@ -93,7 +93,7 @@ export function Title({
   return (
     <header className={className}>
       <Plate n={n} label={label} />
-      <h2 className="mt-10 max-w-4xl serif text-[34px] leading-[1.06] tracking-[-0.02em] md:text-[64px] md:leading-[1.02]">
+      <h2 className="mt-10 max-w-4xl serif font-bold text-[34px] leading-[1.06] tracking-[-0.02em] md:text-[64px] md:leading-[1.02]">
         {children}
       </h2>
       {lead ? (
