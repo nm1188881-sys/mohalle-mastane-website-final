@@ -64,11 +64,19 @@ function Nav() {
 function Hero() {
   return (
     <section className="formwork relative flex min-h-[92svh] flex-col justify-end overflow-hidden bg-background pb-16 pt-32 md:pb-28">
+      <img
+        src={strayDogs.url}
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.28]"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/40" />
       <div className="pointer-events-none absolute inset-y-0 left-[7%] w-px bg-foreground/10" />
       <div className="pointer-events-none absolute inset-y-0 right-[7%] hidden w-px bg-foreground/10 md:block" />
       <div className="pointer-events-none absolute inset-x-0 top-[38%] h-px bg-foreground/10" />
       {/* the daylight falling across the wall */}
       <div className="light-shaft pointer-events-none absolute inset-0" />
+
 
       <div className="relative mx-auto w-full max-w-[1240px] px-5 md:px-12">
         <Plate n="01" label="Who We Are · 150 Members Strong" />
