@@ -3,6 +3,12 @@ import { Link } from "@tanstack/react-router";
 import { SiteMenu } from "@/components/SiteMenu";
 import { Sprig } from "@/components/Sprig";
 import { VolunteerForm } from "@/components/VolunteerForm";
+import { Rail, RailItem } from "@/components/Rail";
+import { Reveal } from "@/components/Reveal";
+import { StoryCard } from "@/components/StoryCard";
+import { StepFlow } from "@/components/StepFlow";
+import { rescueStories, fostered } from "@/data/stories";
+import { Eye, Users, HeartPulse, CheckCircle2 } from "lucide-react";
 
 
 import logo from "@/assets/logo.png.asset.json";
