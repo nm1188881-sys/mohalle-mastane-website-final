@@ -560,6 +560,8 @@ function Home() {
       <About />
       <CareExists />
       <Neighbourhood />
+      <RescueStories />
+      <Fostered />
       <Impact />
       <FindCircle />
       <FourCs />
