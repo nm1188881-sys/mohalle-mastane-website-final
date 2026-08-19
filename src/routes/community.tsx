@@ -193,6 +193,56 @@ function Faces() {
   );
 }
 
+/* Real stories — the shared card format, scrolled horizontally. */
+function Stories() {
+  return (
+    <Court id="stories">
+      <Title
+        n="03b"
+        label="Real Stories"
+        lead="Every case below started as a message from a neighbour. Have one of your own? Send it to us and we'll add it here."
+      >
+        Real stories,
+        <br />
+        <span className="italic text-accent">from real streets.</span>
+      </Title>
+      <div className="mt-12">
+        <Rail label="Swipe through the stories →">
+          {rescueStories.map((s, i) => (
+            <RailItem key={s.id}>
+              <Reveal delay={i * 80}>
+                <StoryCard story={s} />
+              </Reveal>
+            </RailItem>
+          ))}
+        </Rail>
+      </div>
+
+      <div className="mt-16 border-t border-border pt-10">
+        <div className="plate mb-6">Fostered &amp; Cared</div>
+        <Rail label="Animals fostered by local rescuers →">
+          {fostered.map((s, i) => (
+            <RailItem key={s.id}>
+              <Reveal delay={i * 80}>
+                <StoryCard story={s} />
+              </Reveal>
+            </RailItem>
+          ))}
+        </Rail>
+      </div>
+
+      <a
+        href="mailto:hello@streetkind.org?subject=My rescue story"
+        className="mt-14 inline-flex items-center border border-foreground/40 px-8 py-4 text-[10px] uppercase tracking-[0.3em] transition-colors hover:border-accent hover:text-accent"
+      >
+        Share your story →
+      </a>
+    </Court>
+  );
+}
+
+
+
 /* 04 — four principles, held apart by air. */
 function Pillars() {
   const items = [
