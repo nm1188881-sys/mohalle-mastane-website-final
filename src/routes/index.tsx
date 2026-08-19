@@ -52,12 +52,14 @@ function Nav() {
           </span>
         </a>
         <div className="flex items-center gap-2 md:gap-4">
-          <a
-            href="#donate"
+          <Link
+            to="/fundraising"
+            hash="contribute"
             className="inline-flex items-center px-4 md:px-5 py-2 md:py-2.5 bg-foreground text-background text-[10px] md:text-[11px] uppercase tracking-[0.26em] hover:bg-accent transition-colors"
           >
             Donate
-          </a>
+          </Link>
+
           <SiteMenu />
         </div>
 
