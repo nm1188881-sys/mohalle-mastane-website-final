@@ -103,12 +103,14 @@ function Hero() {
               >
                 Join the Movement
               </a>
-              <a
-                href="#donate"
+              <Link
+                to="/fundraising"
+                hash="contribute"
                 className="inline-flex items-center justify-center px-8 py-4 border border-foreground/40 text-[10px] uppercase tracking-[0.34em] hover:border-accent hover:text-accent transition-colors"
               >
                 Donate
-              </a>
+              </Link>
+
             </div>
           </div>
           <div className="md:col-span-6 order-first md:order-last">
