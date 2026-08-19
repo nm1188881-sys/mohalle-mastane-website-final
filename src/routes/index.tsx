@@ -43,7 +43,7 @@ function Nav() {
         <a href="#top" className="flex items-center gap-3">
           <img src={logo.url} alt="Mohalle Mastane" className="h-10 md:h-12 w-auto" />
           <span className="hidden sm:flex flex-col leading-tight">
-            <span className="serif text-[15px] md:text-[17px] tracking-[0.18em] uppercase">
+            <span className="serif font-bold text-[15px] md:text-[17px] tracking-[0.18em] uppercase">
               Mohalle Mastane
             </span>
             <span className="text-[9px] md:text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
@@ -83,7 +83,7 @@ function Hero() {
         <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-end">
           <div className="md:col-span-6">
             <div className="plate mb-8 md:mb-12">01 — A Trust for Coexistence</div>
-            <h1 className="serif text-[44px] leading-[1.02] md:text-[92px] md:leading-[0.94] tracking-[-0.03em] text-foreground">
+            <h1 className="serif font-bold text-[44px] leading-[1.02] md:text-[92px] md:leading-[0.94] tracking-[-0.03em] text-foreground">
               Coexistence.
               <br />
               Compassion.
@@ -141,7 +141,7 @@ function About() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-12 grid md:grid-cols-12 gap-10 md:gap-20">
         <div className="md:col-span-5">
           <div className="plate mb-10">02 — About the Trust</div>
-          <h2 className="serif text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
+          <h2 className="serif font-bold text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
             A collective effort,
             <br />
             <span className="italic">not a service.</span>
@@ -189,7 +189,7 @@ function CareExists() {
         </div>
         <div className="md:col-span-5 order-1 md:order-2">
           <div className="plate mb-10">03 — The Truth We Begin From</div>
-          <h2 className="serif text-[32px] md:text-[48px] leading-[1.05] tracking-[-0.01em]">
+          <h2 className="serif font-bold text-[32px] md:text-[48px] leading-[1.05] tracking-[-0.01em]">
             Care already exists.
             <br />
             <span className="italic text-accent">Across every street.</span>
@@ -212,7 +212,7 @@ function Neighbourhood() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-12">
         <div className="max-w-2xl mb-16 md:mb-24">
           <div className="plate mb-10">04 — How It Works</div>
-          <h2 className="serif text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em]">
+          <h2 className="serif font-bold text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em]">
             Your neighbourhood
             <br />
             <span className="italic">already cares.</span>
@@ -248,7 +248,7 @@ function Impact() {
         <div className="grid md:grid-cols-12 gap-10 mb-14 md:mb-20">
           <div className="md:col-span-5">
             <div className="plate mb-10 text-accent">05 — Our Impact So Far</div>
-            <h2 className="serif text-[30px] md:text-[44px] leading-[1.1] tracking-[-0.01em] text-background">
+            <h2 className="serif font-bold text-[30px] md:text-[44px] leading-[1.1] tracking-[-0.01em] text-background">
               Quiet work,
               <br />
               <span className="italic">in real numbers.</span>
@@ -266,7 +266,7 @@ function Impact() {
               key={s.label}
               className={`py-10 md:py-14 px-2 md:px-6 ${i !== 0 ? "md:border-l border-background/15" : ""} ${i % 2 !== 0 ? "border-l border-background/15" : ""} ${i >= 2 ? "border-t border-background/15 md:border-t-0" : ""}`}
             >
-              <div className="serif text-[44px] md:text-[64px] leading-none tracking-[-0.02em] text-background">
+              <div className="serif font-bold text-[44px] md:text-[64px] leading-none tracking-[-0.02em] text-background">
                 {s.n}
               </div>
               <div className="mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-background/60">
@@ -286,7 +286,7 @@ function FindCircle() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-12 grid md:grid-cols-12 gap-12 md:gap-20 items-center">
         <div className="md:col-span-5">
           <div className="plate mb-10">06 — Find Your Circle</div>
-          <h2 className="serif text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
+          <h2 className="serif font-bold text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
             Connect with people
             <br />
             <span className="italic text-accent">already helping nearby.</span>
@@ -330,7 +330,7 @@ function FourCs() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-12">
         <div className="mb-16 md:mb-24">
           <div className="plate mb-10">07 — Our Core Ideals</div>
-          <h2 className="serif text-[40px] md:text-[64px] tracking-[-0.02em]">
+          <h2 className="serif font-bold text-[40px] md:text-[64px] tracking-[-0.02em]">
             our <span className="italic">4 c's</span>
           </h2>
         </div>
@@ -342,7 +342,7 @@ function FourCs() {
             >
               <div className="flex items-baseline gap-5">
                 <span className="serif italic text-accent text-[20px]">{it.n}</span>
-                <h3 className="serif text-[22px] md:text-[28px] tracking-[-0.01em]">{it.title}</h3>
+                <h3 className="serif font-bold text-[22px] md:text-[28px] tracking-[-0.01em]">{it.title}</h3>
               </div>
               <p className="mt-5 text-[14px] md:text-[15px] leading-[1.85] text-foreground/80 max-w-md">
                 {it.body}
@@ -360,7 +360,7 @@ function Join() {
     <section id="join" className="concrete light-shaft border-t border-border py-28 md:py-44">
       <div className="relative mx-auto max-w-[1100px] px-5 md:px-12">
         <div className="plate mb-10">08 — Partner in Compassion</div>
-        <h2 className="serif text-[36px] md:text-[62px] leading-[1.05] tracking-[-0.02em]">
+        <h2 className="serif font-bold text-[36px] md:text-[62px] leading-[1.05] tracking-[-0.02em]">
           Become a volunteer.
           <br />
           <span className="italic text-accent">Heal your street.</span>
@@ -415,7 +415,7 @@ function Footer() {
           <div className="flex items-center gap-3">
             <img src={logo.url} alt="" className="h-12 w-auto" />
             <div className="leading-tight">
-              <div className="serif text-[17px] tracking-[0.18em] uppercase text-background">
+              <div className="serif font-bold text-[17px] tracking-[0.18em] uppercase text-background">
                 Mohalle Mastane
               </div>
               <div className="text-[10px] uppercase tracking-[0.3em] text-background/60">
