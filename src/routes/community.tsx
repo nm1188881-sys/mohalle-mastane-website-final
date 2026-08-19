@@ -64,11 +64,19 @@ function Nav() {
 function Hero() {
   return (
     <section className="formwork relative flex min-h-[92svh] flex-col justify-end overflow-hidden bg-background pb-16 pt-32 md:pb-28">
+      <img
+        src={strayDogs.url}
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.28]"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/40" />
       <div className="pointer-events-none absolute inset-y-0 left-[7%] w-px bg-foreground/10" />
       <div className="pointer-events-none absolute inset-y-0 right-[7%] hidden w-px bg-foreground/10 md:block" />
       <div className="pointer-events-none absolute inset-x-0 top-[38%] h-px bg-foreground/10" />
       {/* the daylight falling across the wall */}
       <div className="light-shaft pointer-events-none absolute inset-0" />
+
 
       <div className="relative mx-auto w-full max-w-[1240px] px-5 md:px-12">
         <Plate n="01" label="Who We Are · 150 Members Strong" />
@@ -184,6 +192,56 @@ function Faces() {
     </Court>
   );
 }
+
+/* Real stories — the shared card format, scrolled horizontally. */
+function Stories() {
+  return (
+    <Court id="stories">
+      <Title
+        n="03b"
+        label="Real Stories"
+        lead="Every case below started as a message from a neighbour. Have one of your own? Send it to us and we'll add it here."
+      >
+        Real stories,
+        <br />
+        <span className="italic text-accent">from real streets.</span>
+      </Title>
+      <div className="mt-12">
+        <Rail label="Swipe through the stories →">
+          {rescueStories.map((s, i) => (
+            <RailItem key={s.id}>
+              <Reveal delay={i * 80}>
+                <StoryCard story={s} />
+              </Reveal>
+            </RailItem>
+          ))}
+        </Rail>
+      </div>
+
+      <div className="mt-16 border-t border-border pt-10">
+        <div className="plate mb-6">Fostered &amp; Cared</div>
+        <Rail label="Animals fostered by local rescuers →">
+          {fostered.map((s, i) => (
+            <RailItem key={s.id}>
+              <Reveal delay={i * 80}>
+                <StoryCard story={s} />
+              </Reveal>
+            </RailItem>
+          ))}
+        </Rail>
+      </div>
+
+      <a
+        href="mailto:hello@streetkind.org?subject=My rescue story"
+        className="mt-14 inline-flex items-center border border-foreground/40 px-8 py-4 text-[10px] uppercase tracking-[0.3em] transition-colors hover:border-accent hover:text-accent"
+      >
+        Share your story →
+      </a>
+    </Court>
+  );
+}
+
+
 
 /* 04 — four principles, held apart by air. */
 function Pillars() {

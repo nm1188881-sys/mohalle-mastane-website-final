@@ -3,6 +3,12 @@ import { Link } from "@tanstack/react-router";
 import { SiteMenu } from "@/components/SiteMenu";
 import { Sprig } from "@/components/Sprig";
 import { VolunteerForm } from "@/components/VolunteerForm";
+import { Rail, RailItem } from "@/components/Rail";
+import { Reveal } from "@/components/Reveal";
+import { StoryCard } from "@/components/StoryCard";
+import { StepFlow } from "@/components/StepFlow";
+import { rescueStories, fostered } from "@/data/stories";
+import { Eye, Users, HeartPulse, CheckCircle2 } from "lucide-react";
 
 
 import logo from "@/assets/logo.png.asset.json";
@@ -43,7 +49,7 @@ function Nav() {
         <a href="#top" className="flex items-center gap-3">
           <img src={logo.url} alt="Mohalle Mastane" className="h-10 md:h-12 w-auto" />
           <span className="hidden sm:flex flex-col leading-tight">
-            <span className="serif text-[15px] md:text-[17px] tracking-[0.18em] uppercase">
+            <span className="serif font-bold text-[15px] md:text-[17px] tracking-[0.18em] uppercase">
               Mohalle Mastane
             </span>
             <span className="text-[9px] md:text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
@@ -52,12 +58,14 @@ function Nav() {
           </span>
         </a>
         <div className="flex items-center gap-2 md:gap-4">
-          <a
-            href="#donate"
+          <Link
+            to="/fundraising"
+            hash="contribute"
             className="inline-flex items-center px-4 md:px-5 py-2 md:py-2.5 bg-foreground text-background text-[10px] md:text-[11px] uppercase tracking-[0.26em] hover:bg-accent transition-colors"
           >
             Donate
-          </a>
+          </Link>
+
           <SiteMenu />
         </div>
 
@@ -81,7 +89,7 @@ function Hero() {
         <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-end">
           <div className="md:col-span-6">
             <div className="plate mb-8 md:mb-12">01 — A Trust for Coexistence</div>
-            <h1 className="serif text-[44px] leading-[1.02] md:text-[92px] md:leading-[0.94] tracking-[-0.03em] text-foreground">
+            <h1 className="serif font-bold text-[44px] leading-[1.02] md:text-[92px] md:leading-[0.94] tracking-[-0.03em] text-foreground">
               Coexistence.
               <br />
               Compassion.
@@ -101,12 +109,14 @@ function Hero() {
               >
                 Join the Movement
               </a>
-              <a
-                href="#donate"
+              <Link
+                to="/fundraising"
+                hash="contribute"
                 className="inline-flex items-center justify-center px-8 py-4 border border-foreground/40 text-[10px] uppercase tracking-[0.34em] hover:border-accent hover:text-accent transition-colors"
               >
                 Donate
-              </a>
+              </Link>
+
             </div>
           </div>
           <div className="md:col-span-6 order-first md:order-last">
@@ -137,7 +147,7 @@ function About() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-12 grid md:grid-cols-12 gap-10 md:gap-20">
         <div className="md:col-span-5">
           <div className="plate mb-10">02 — About the Trust</div>
-          <h2 className="serif text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
+          <h2 className="serif font-bold text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
             A collective effort,
             <br />
             <span className="italic">not a service.</span>
@@ -185,7 +195,7 @@ function CareExists() {
         </div>
         <div className="md:col-span-5 order-1 md:order-2">
           <div className="plate mb-10">03 — The Truth We Begin From</div>
-          <h2 className="serif text-[32px] md:text-[48px] leading-[1.05] tracking-[-0.01em]">
+          <h2 className="serif font-bold text-[32px] md:text-[48px] leading-[1.05] tracking-[-0.01em]">
             Care already exists.
             <br />
             <span className="italic text-accent">Across every street.</span>
@@ -208,7 +218,7 @@ function Neighbourhood() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-12">
         <div className="max-w-2xl mb-16 md:mb-24">
           <div className="plate mb-10">04 — How It Works</div>
-          <h2 className="serif text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em]">
+          <h2 className="serif font-bold text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em]">
             Your neighbourhood
             <br />
             <span className="italic">already cares.</span>
@@ -226,10 +236,97 @@ function Neighbourhood() {
             className="w-full h-auto"
           />
         </div>
+
+        <div className="mt-20 md:mt-28">
+          <div className="plate mb-8">The four steps</div>
+          <StepFlow
+            steps={[
+              { n: "01", title: "You spot an animal", body: "Injured, abandoned, or simply hungry — send a photo and a location to your circle.", icon: Eye },
+              { n: "02", title: "The circle responds", body: "The nearest feeders and rescuers are alerted. Someone is usually minutes away.", icon: Users },
+              { n: "03", title: "Care begins", body: "First aid, a vet run, or a foster bed — funded together by the neighbourhood.", icon: HeartPulse },
+              { n: "04", title: "The case closes", body: "Only when the animal is safe, healed and the whole circle knows the outcome.", icon: CheckCircle2 },
+            ]}
+          />
+        </div>
       </div>
     </section>
   );
 }
+
+/* Real rescue stories — one consistent card, scrolled left to right. */
+function RescueStories() {
+  return (
+    <section id="stories" className="concrete border-b border-border py-24 md:py-36">
+      <div className="mx-auto max-w-[1400px] px-5 md:px-12">
+        <Reveal>
+          <div className="plate mb-8">05 — Real Rescue Stories</div>
+          <h2 className="serif font-bold text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em] max-w-3xl">
+            Every rescue is
+            <br />
+            <span className="italic text-accent">someone's whole life.</span>
+          </h2>
+          <p className="mt-6 max-w-xl text-[15px] leading-[1.9] text-muted-foreground">
+            Real cases from the circle — the message, the response, and what happened next.
+          </p>
+        </Reveal>
+        <div className="mt-14">
+          <Rail label="Swipe through the stories →">
+            {rescueStories.map((s, i) => (
+              <RailItem key={s.id}>
+                <Reveal delay={i * 80}>
+                  <StoryCard story={s} />
+                </Reveal>
+              </RailItem>
+            ))}
+          </Rail>
+        </div>
+        <div className="mt-12">
+          <Link
+            to="/community"
+            hash="stories"
+            className="inline-flex items-center px-8 py-4 border border-foreground/40 text-[10px] uppercase tracking-[0.3em] hover:border-accent hover:text-accent transition-colors"
+          >
+            Share your story →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Fostered & cared for by local rescuers. */
+function Fostered() {
+  return (
+    <section id="fostered" className="on-dark water-temple border-b border-border py-24 text-background md:py-36">
+      <div className="relative z-[1] mx-auto max-w-[1400px] px-5 md:px-12">
+        <Reveal>
+          <div className="plate mb-8 text-accent">06 — Fostered &amp; Cared</div>
+          <h2 className="serif font-bold text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em] max-w-3xl text-background">
+            Taken in by neighbours
+            <br />
+            <span className="italic text-accent">until they were safe.</span>
+          </h2>
+          <p className="mt-6 max-w-xl text-[15px] leading-[1.9] text-background/70">
+            Local rescuers open their homes — a spare corner, a sack bed, four months of
+            physiotherapy. This is what fostering actually looks like.
+          </p>
+        </Reveal>
+        <div className="mt-14">
+          <Rail label="Swipe through the fosters →" dark>
+            {fostered.map((s, i) => (
+              <RailItem key={s.id}>
+                <Reveal delay={i * 80}>
+                  <StoryCard story={s} dark />
+                </Reveal>
+              </RailItem>
+            ))}
+          </Rail>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 function Impact() {
   const stats = [
@@ -244,7 +341,7 @@ function Impact() {
         <div className="grid md:grid-cols-12 gap-10 mb-14 md:mb-20">
           <div className="md:col-span-5">
             <div className="plate mb-10 text-accent">05 — Our Impact So Far</div>
-            <h2 className="serif text-[30px] md:text-[44px] leading-[1.1] tracking-[-0.01em] text-background">
+            <h2 className="serif font-bold text-[30px] md:text-[44px] leading-[1.1] tracking-[-0.01em] text-background">
               Quiet work,
               <br />
               <span className="italic">in real numbers.</span>
@@ -262,7 +359,7 @@ function Impact() {
               key={s.label}
               className={`py-10 md:py-14 px-2 md:px-6 ${i !== 0 ? "md:border-l border-background/15" : ""} ${i % 2 !== 0 ? "border-l border-background/15" : ""} ${i >= 2 ? "border-t border-background/15 md:border-t-0" : ""}`}
             >
-              <div className="serif text-[44px] md:text-[64px] leading-none tracking-[-0.02em] text-background">
+              <div className="serif font-bold text-[44px] md:text-[64px] leading-none tracking-[-0.02em] text-background">
                 {s.n}
               </div>
               <div className="mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-background/60">
@@ -282,7 +379,7 @@ function FindCircle() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-12 grid md:grid-cols-12 gap-12 md:gap-20 items-center">
         <div className="md:col-span-5">
           <div className="plate mb-10">06 — Find Your Circle</div>
-          <h2 className="serif text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
+          <h2 className="serif font-bold text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
             Connect with people
             <br />
             <span className="italic text-accent">already helping nearby.</span>
@@ -326,7 +423,7 @@ function FourCs() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-12">
         <div className="mb-16 md:mb-24">
           <div className="plate mb-10">07 — Our Core Ideals</div>
-          <h2 className="serif text-[40px] md:text-[64px] tracking-[-0.02em]">
+          <h2 className="serif font-bold text-[40px] md:text-[64px] tracking-[-0.02em]">
             our <span className="italic">4 c's</span>
           </h2>
         </div>
@@ -338,7 +435,7 @@ function FourCs() {
             >
               <div className="flex items-baseline gap-5">
                 <span className="serif italic text-accent text-[20px]">{it.n}</span>
-                <h3 className="serif text-[22px] md:text-[28px] tracking-[-0.01em]">{it.title}</h3>
+                <h3 className="serif font-bold text-[22px] md:text-[28px] tracking-[-0.01em]">{it.title}</h3>
               </div>
               <p className="mt-5 text-[14px] md:text-[15px] leading-[1.85] text-foreground/80 max-w-md">
                 {it.body}
@@ -356,7 +453,7 @@ function Join() {
     <section id="join" className="concrete light-shaft border-t border-border py-28 md:py-44">
       <div className="relative mx-auto max-w-[1100px] px-5 md:px-12">
         <div className="plate mb-10">08 — Partner in Compassion</div>
-        <h2 className="serif text-[36px] md:text-[62px] leading-[1.05] tracking-[-0.02em]">
+        <h2 className="serif font-bold text-[36px] md:text-[62px] leading-[1.05] tracking-[-0.02em]">
           Become a volunteer.
           <br />
           <span className="italic text-accent">Heal your street.</span>
@@ -368,25 +465,28 @@ function Join() {
           circle of compassion where you live.
         </p>
         <div className="mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <a
+          <Link
             id="donate"
-            href="mailto:hello@streetkind.org?subject=I want to donate"
+            to="/fundraising"
+            hash="contribute"
             className="inline-flex items-center justify-center px-8 py-4 bg-foreground text-background text-[11px] uppercase tracking-[0.28em] hover:bg-accent transition-colors"
           >
             Donate
-          </a>
+          </Link>
           <a
-            href="mailto:hello@streetkind.org?subject=I want to volunteer"
+            href="#volunteer"
             className="inline-flex items-center justify-center px-8 py-4 border border-foreground text-[11px] uppercase tracking-[0.28em] hover:border-accent hover:text-accent transition-colors"
           >
             Volunteer
           </a>
-          <a
-            href="mailto:hello@streetkind.org?subject=My story"
+          <Link
+            to="/community"
+            hash="stories"
             className="inline-flex items-center justify-center px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-muted-foreground hover:text-foreground transition-colors"
           >
             Share Your Story
-          </a>
+          </Link>
+
         </div>
 
         <div className="mt-16 md:mt-24 border-t border-border pt-12">
@@ -408,7 +508,7 @@ function Footer() {
           <div className="flex items-center gap-3">
             <img src={logo.url} alt="" className="h-12 w-auto" />
             <div className="leading-tight">
-              <div className="serif text-[17px] tracking-[0.18em] uppercase text-background">
+              <div className="serif font-bold text-[17px] tracking-[0.18em] uppercase text-background">
                 Mohalle Mastane
               </div>
               <div className="text-[10px] uppercase tracking-[0.3em] text-background/60">
@@ -460,6 +560,8 @@ function Home() {
       <About />
       <CareExists />
       <Neighbourhood />
+      <RescueStories />
+      <Fostered />
       <Impact />
       <FindCircle />
       <FourCs />
