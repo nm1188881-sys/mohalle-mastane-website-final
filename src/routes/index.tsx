@@ -230,10 +230,97 @@ function Neighbourhood() {
             className="w-full h-auto"
           />
         </div>
+
+        <div className="mt-20 md:mt-28">
+          <div className="plate mb-8">The four steps</div>
+          <StepFlow
+            steps={[
+              { n: "01", title: "You spot an animal", body: "Injured, abandoned, or simply hungry — send a photo and a location to your circle.", icon: Eye },
+              { n: "02", title: "The circle responds", body: "The nearest feeders and rescuers are alerted. Someone is usually minutes away.", icon: Users },
+              { n: "03", title: "Care begins", body: "First aid, a vet run, or a foster bed — funded together by the neighbourhood.", icon: HeartPulse },
+              { n: "04", title: "The case closes", body: "Only when the animal is safe, healed and the whole circle knows the outcome.", icon: CheckCircle2 },
+            ]}
+          />
+        </div>
       </div>
     </section>
   );
 }
+
+/* Real rescue stories — one consistent card, scrolled left to right. */
+function RescueStories() {
+  return (
+    <section id="stories" className="concrete border-b border-border py-24 md:py-36">
+      <div className="mx-auto max-w-[1400px] px-5 md:px-12">
+        <Reveal>
+          <div className="plate mb-8">05 — Real Rescue Stories</div>
+          <h2 className="serif font-bold text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em] max-w-3xl">
+            Every rescue is
+            <br />
+            <span className="italic text-accent">someone's whole life.</span>
+          </h2>
+          <p className="mt-6 max-w-xl text-[15px] leading-[1.9] text-muted-foreground">
+            Real cases from the circle — the message, the response, and what happened next.
+          </p>
+        </Reveal>
+        <div className="mt-14">
+          <Rail label="Swipe through the stories →">
+            {rescueStories.map((s, i) => (
+              <RailItem key={s.id}>
+                <Reveal delay={i * 80}>
+                  <StoryCard story={s} />
+                </Reveal>
+              </RailItem>
+            ))}
+          </Rail>
+        </div>
+        <div className="mt-12">
+          <Link
+            to="/community"
+            hash="stories"
+            className="inline-flex items-center px-8 py-4 border border-foreground/40 text-[10px] uppercase tracking-[0.3em] hover:border-accent hover:text-accent transition-colors"
+          >
+            Share your story →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Fostered & cared for by local rescuers. */
+function Fostered() {
+  return (
+    <section id="fostered" className="on-dark water-temple border-b border-border py-24 text-background md:py-36">
+      <div className="relative z-[1] mx-auto max-w-[1400px] px-5 md:px-12">
+        <Reveal>
+          <div className="plate mb-8 text-accent">06 — Fostered &amp; Cared</div>
+          <h2 className="serif font-bold text-[34px] md:text-[58px] leading-[1.05] tracking-[-0.02em] max-w-3xl text-background">
+            Taken in by neighbours
+            <br />
+            <span className="italic text-accent">until they were safe.</span>
+          </h2>
+          <p className="mt-6 max-w-xl text-[15px] leading-[1.9] text-background/70">
+            Local rescuers open their homes — a spare corner, a sack bed, four months of
+            physiotherapy. This is what fostering actually looks like.
+          </p>
+        </Reveal>
+        <div className="mt-14">
+          <Rail label="Swipe through the fosters →" dark>
+            {fostered.map((s, i) => (
+              <RailItem key={s.id}>
+                <Reveal delay={i * 80}>
+                  <StoryCard story={s} dark />
+                </Reveal>
+              </RailItem>
+            ))}
+          </Rail>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 function Impact() {
   const stats = [
