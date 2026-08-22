@@ -6,6 +6,11 @@ import { Chamber, Court, Figure, Plate, Quiet, Row, Title } from "@/components/A
 import strayDog from "@/assets/stray-dog-courtyard.jpg.asset.json";
 import strayCat from "@/assets/stray-cat-corridor.jpg.asset.json";
 import strayDogs from "@/assets/stray-dogs-resting.jpg.asset.json";
+import { Rail, RailItem } from "@/components/Rail";
+import { Reveal } from "@/components/Reveal";
+import { StoryCard } from "@/components/StoryCard";
+import { rescueStories, fostered } from "@/data/stories";
+
 
 export const Route = createFileRoute("/community")({
   head: () => ({
@@ -614,6 +619,7 @@ function CommunityPage() {
       <Hero />
       <Stats />
       <Faces />
+      <Stories />
       <Pillars />
       <Composition />
       <Process />
