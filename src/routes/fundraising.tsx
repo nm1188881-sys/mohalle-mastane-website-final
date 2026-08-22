@@ -177,37 +177,45 @@ function System() {
       <Title n="04" label="The System">
         How it <span className="italic text-accent">works.</span>
       </Title>
-      <div className="border-t border-border">
-        {steps.map((s, i) => (
-          <Row key={s.title} index={`0${i + 1}`} head={s.title} body={s.body} />
-        ))}
+      <div className="mt-12">
+        <StepFlow
+          label="Four moving parts — swipe →"
+          steps={steps.map((s, i) => ({
+            n: `0${i + 1}`,
+            title: s.title.split("—")[0]!.trim(),
+            body: s.body,
+            icon: [Users, Building2, Coins, Scale][i] ?? Users,
+          }))}
+        />
       </div>
 
-      <h3 className="mt-24 serif text-[28px] leading-tight tracking-[-0.02em] md:text-[46px]">
+      <h3 className="mt-24 serif text-[28px] font-bold leading-tight tracking-[-0.02em] md:text-[46px]">
         What lives <span className="italic text-accent">inside.</span>
       </h3>
-      <div className="mt-12 grid border-t border-border sm:grid-cols-2 lg:grid-cols-3">
-        {inside.map((it, i) => (
-          <article
-            key={it.title}
-            className={`border-b border-border py-10 md:py-14 sm:px-8 lg:px-10 ${
-              i % 2 === 1 ? "sm:border-l sm:border-border" : ""
-            } ${i % 3 !== 0 ? "lg:border-l lg:border-border" : "lg:border-l-0"}`}
-          >
-            <div className="flex items-baseline justify-between gap-4">
-              <span className="plate">{it.tag}</span>
-              <span className="serif italic text-[15px] text-accent">0{i + 1}</span>
-            </div>
-            <h4 className="mt-5 serif text-[20px] tracking-[-0.01em] md:text-[23px]">{it.title}</h4>
-            <p className="mt-4 max-w-xs text-[13px] leading-[1.9] text-muted-foreground">
-              {it.body}
-            </p>
-          </article>
-        ))}
+      <div className="mt-12">
+        <Rail label="Inside the hub →">
+          {inside.map((it, i) => (
+            <RailItem key={it.title}>
+              <Reveal delay={i * 70}>
+                <article className="group flex h-full min-h-[280px] flex-col border border-border bg-card p-7 transition-all duration-500 hover:-translate-y-1 hover:border-accent/70 md:p-9">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <span className="plate">{it.tag}</span>
+                    <span className="serif italic text-[15px] text-accent">0{i + 1}</span>
+                  </div>
+                  <h4 className="mt-6 serif text-[22px] font-bold tracking-[-0.01em] md:text-[26px]">
+                    {it.title}
+                  </h4>
+                  <p className="mt-4 text-[13px] leading-[1.9] text-muted-foreground">{it.body}</p>
+                </article>
+              </Reveal>
+            </RailItem>
+          ))}
+        </Rail>
       </div>
     </Court>
   );
 }
+
 
 function HumanImpact() {
   const stats = [
