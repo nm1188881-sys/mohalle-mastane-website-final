@@ -619,6 +619,7 @@ function CommunityPage() {
       <Hero />
       <Stats />
       <Faces />
+      <Stories />
       <Pillars />
       <Composition />
       <Process />
