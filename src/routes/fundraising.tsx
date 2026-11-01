@@ -1,8 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { Building2, Coins, Scale, Users } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
 import { SiteMenu } from "@/components/SiteMenu";
 import { Chamber, Court, Figure, Plate, Quiet, Row, Title } from "@/components/Ando";
+import { Rail, RailItem } from "@/components/Rail";
+import { Reveal } from "@/components/Reveal";
+import { StepFlow } from "@/components/StepFlow";
+import { site } from "@/config/site";
 
 export const Route = createFileRoute("/fundraising")({
   head: () => ({
@@ -43,7 +48,9 @@ function Nav() {
         </Link>
         <div className="flex items-center gap-2 md:gap-4">
           <a
-            href="#donate"
+            href={site.razorpayUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center bg-foreground px-4 py-2 text-[10px] uppercase tracking-[0.26em] text-background transition-colors hover:bg-accent md:px-5 md:py-2.5 md:text-[11px]"
           >
             Donate
@@ -75,7 +82,9 @@ function Hero() {
           </p>
           <div className="md:col-span-6 md:text-right">
             <a
-              href="#donate"
+              href={site.razorpayUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center border border-accent px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-accent transition-colors hover:bg-accent hover:text-ink"
             >
               Give a life a chance →
@@ -359,7 +368,6 @@ function Donate() {
   ];
 
   const [amount, setAmount] = useState("500");
-  const [showThanks, setShowThanks] = useState(false);
 
   return (
     <Court id="donate">
@@ -451,14 +459,12 @@ function Donate() {
                   <button
                     key={t.name}
                     type="button"
+                    aria-pressed={active}
                     onClick={() => {
                       setAmount(String(numeric));
-                      setShowThanks(true);
-                      setTimeout(() => {
-                        document
-                          .getElementById("thanks")
-                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                      }, 50);
+                      document
+                        .getElementById("contribute")
+                        ?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
                     className={`group grid w-full grid-cols-1 items-baseline gap-3 border-b border-border py-7 text-left transition-colors sm:grid-cols-[8rem_1fr_auto] sm:gap-8 ${
                       active ? "bg-accent/8" : "hover:bg-foreground/[0.03]"
@@ -474,7 +480,7 @@ function Donate() {
                       </span>
                     </span>
                     <span className="whitespace-nowrap text-[10px] uppercase tracking-[0.26em] text-accent">
-                      Give {t.amount} →
+                      Choose {t.amount}
                     </span>
                   </button>
                 );
@@ -482,9 +488,6 @@ function Donate() {
             </div>
           </div>
 
-          {showThanks && (
-            <ThankYouSection amount={amount} setAmount={setAmount} onReset={() => setShowThanks(false)} />
-          )}
 
           {/* Stories */}
           <div className="mt-24 border-t border-border pt-10">
@@ -603,16 +606,20 @@ function SurgeriesAndAdvancedCare() {
       </div>
       <div className="mt-14 flex flex-col gap-4 sm:flex-row">
         <a
-          href="mailto:hello@streetkind.org?subject=Support surgeries and advanced care"
+          href={site.razorpayUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center justify-center bg-accent px-8 py-4 text-[11px] uppercase tracking-[0.26em] text-ink transition-colors hover:bg-background hover:text-ink"
         >
-          Support this fund →
+          Support this fund
         </a>
         <a
-          href="mailto:hello@streetkind.org?subject=Notify me — surgeries and advanced care"
+          href={site.whatsappGroupUrl}
+          target="_blank"
+          rel="noreferrer"
           className="inline-flex items-center justify-center border border-background/30 px-8 py-4 text-[11px] uppercase tracking-[0.26em] text-background transition-colors hover:border-accent hover:text-accent"
         >
-          Notify me about medical updates
+          Get medical updates on WhatsApp
         </a>
       </div>
     </Chamber>
@@ -665,7 +672,7 @@ function Closing() {
         </p>
         <div className="mt-14 flex flex-col justify-center gap-4 sm:flex-row">
           <a
-            href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
+            href={site.whatsappGroupUrl}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center bg-accent px-9 py-4 text-[11px] uppercase tracking-[0.28em] text-ink transition-colors hover:bg-background"
@@ -673,7 +680,9 @@ function Closing() {
             Join the Movement
           </a>
           <a
-            href="#donate"
+            href={site.razorpayUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center border border-accent px-9 py-4 text-[11px] uppercase tracking-[0.28em] text-accent transition-colors hover:bg-accent hover:text-ink"
           >
             Donate
@@ -721,73 +730,51 @@ function ContributeBlock({
   amount: string;
   setAmount: (v: string) => void;
 }) {
-  const UPI_ID = "streetkind@upi";
-  const PAYEE_NAME = "Mohalle Mastane";
-  const [copied, setCopied] = useState(false);
-
   const numeric = Number(amount) || 0;
-  const upiParams = new URLSearchParams({
-    pa: UPI_ID,
-    pn: PAYEE_NAME,
-    cu: "INR",
-    tn: "Donation to Mohalle Mastane",
-  });
-  if (numeric > 0) upiParams.set("am", String(numeric));
-  const upiUrl = `upi://pay?${upiParams.toString()}`;
-  const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=2&data=${encodeURIComponent(upiUrl)}`;
-
-  const presets = [100, 500, 1000, 2500, 5000];
-
-  const copyId = async () => {
-    try {
-      await navigator.clipboard.writeText(UPI_ID);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch {
-      // ignore
-    }
-  };
-
+  const presets = [100, 500, 1000, 2500, 5000, 10000];
   return (
-    <div
-      id="contribute"
-      className="on-dark water-temple relative min-w-0 text-background"
-    >
+    <div id="contribute" className="on-dark water-temple relative min-w-0 scroll-mt-24 text-background">
       <div className="relative z-[1] p-7 sm:p-9">
         <div className="flex items-baseline justify-between gap-4 border-b border-background/15 pb-5">
-          <span className="plate">Make Your Contribution</span>
-          <span className="text-[10px] uppercase tracking-[0.24em] text-background/40">UPI</span>
+          <span className="plate">Make your contribution</span>
+          <span className="text-[10px] uppercase tracking-[0.24em] text-background/40">Razorpay</span>
         </div>
         <h3 className="mt-8 serif text-[26px] leading-[1.15] md:text-[32px]">
-          Donate directly <span className="italic text-accent">via UPI</span>
+          Donate <span className="italic text-accent">securely</span>
         </h3>
         <p className="mt-4 text-[13px] leading-[1.9] text-background/60">
-          Enter any amount and pay from any UPI app — GPay, PhonePe, Paytm, BHIM, or your bank app.
+          Pay by UPI, card, net banking or wallet on the Trust's official Razorpay page.
         </p>
 
-        <label className="mt-9 block">
-          <span className="plate">Amount (INR)</span>
+        <div className="mt-9">
+          <label htmlFor="donate-amount" className="plate">
+            Choose an amount (INR)
+          </label>
           <div className="mt-3 flex items-center border-b border-background/25 transition-colors focus-within:border-accent">
-            <span className="serif text-[30px] text-accent pr-3">₹</span>
+            <span className="serif pr-3 text-[30px] text-accent" aria-hidden="true">
+              ₹
+            </span>
             <input
-              type="number"
+              id="donate-amount"
+              type="text"
               inputMode="numeric"
-              min={1}
+              pattern="[0-9]*"
               value={amount}
-              onChange={(e) => setAmount(e.target.value.replace(/[^\d]/g, ""))}
+              onChange={(e) => setAmount(e.target.value.replace(/[^\d]/g, "").slice(0, 7))}
               placeholder="500"
               className="w-full min-w-0 flex-1 bg-transparent py-2 serif text-[30px] text-background outline-none placeholder:text-background/25"
             />
           </div>
-        </label>
+        </div>
 
         <div className="mt-6 grid grid-cols-3 gap-px bg-background/15">
           {presets.map((p) => (
             <button
               key={p}
               type="button"
+              aria-pressed={Number(amount) === p}
               onClick={() => setAmount(String(p))}
-              className={`py-3 text-[11px] tracking-[0.14em] transition-colors ${
+              className={`min-h-11 py-3 text-[12px] tracking-[0.1em] transition-colors ${
                 Number(amount) === p
                   ? "bg-accent text-ink"
                   : "bg-ink/70 text-background/70 hover:text-accent"
@@ -796,152 +783,37 @@ function ContributeBlock({
               ₹{p.toLocaleString("en-IN")}
             </button>
           ))}
-          <div className="bg-ink/70" />
-        </div>
-
-
-        <a
-          href={upiUrl}
-          className={`mt-8 inline-flex w-full items-center justify-center px-6 py-4 text-[11px] uppercase tracking-[0.26em] transition-colors ${
-            numeric > 0
-              ? "bg-accent text-ink hover:bg-background"
-              : "pointer-events-none bg-background/10 text-background/40"
-          }`}
-        >
-          Pay ₹{numeric > 0 ? numeric.toLocaleString("en-IN") : "—"} via UPI →
-        </a>
-        <p className="mt-4 text-[11px] leading-[1.8] text-background/45">
-          On mobile, this opens your UPI app with the amount pre-filled. On desktop, scan the code
-          below.
-        </p>
-
-        <div className="mt-9 border-t border-background/15 pt-8">
-          <div className="mb-6 flex items-baseline justify-between gap-4">
-            <h4 className="serif text-[19px]">
-              Scan with any <span className="italic text-accent">UPI app</span>
-            </h4>
-            <span className="plate shrink-0">Scan to Pay</span>
-          </div>
-          <div className="flex justify-center">
-            <div className="bg-background p-3">
-              <img
-                src={qrSrc}
-                alt={`UPI QR code to pay ₹${numeric} to ${PAYEE_NAME}`}
-                width={260}
-                height={260}
-                className="block h-auto w-full max-w-[200px]"
-              />
-            </div>
-          </div>
-          <p className="mt-6 text-center text-[12px] leading-[1.9] text-background/55">
-            The code updates with the amount you enter. All contributions are received by the Trust
-            and acknowledged.
-          </p>
-        </div>
-
-        <div className="mt-8 flex items-center justify-between gap-3 border-t border-background/15 pt-6">
-          <div className="min-w-0">
-            <div className="plate">UPI ID</div>
-            <div className="mt-2 serif text-[18px] text-accent break-all">{UPI_ID}</div>
-          </div>
-          <button
-            type="button"
-            onClick={copyId}
-            className="shrink-0 border border-accent px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-accent transition-colors hover:bg-accent hover:text-ink"
-          >
-            {copied ? "Copied" : "Copy"}
-          </button>
         </div>
 
         <a
-          href={`mailto:hello@streetkind.org?subject=I've made my donation&body=I have contributed ₹${numeric || ""} via UPI to ${UPI_ID}.%0D%0A%0D%0AName:%0D%0APhone:%0D%0ATransaction ID:`}
-          className="mt-5 inline-flex w-full items-center justify-center border border-background/25 px-5 py-3 text-center text-[11px] uppercase tracking-[0.26em] text-background transition-colors hover:border-accent hover:text-accent"
+          href={site.razorpayUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex min-h-12 w-full items-center justify-center bg-accent px-6 py-4 text-center text-[11px] uppercase tracking-[0.26em] text-ink transition-colors hover:bg-background"
         >
-          I've made my donation — send details →
+          {numeric > 0 ? `Donate ₹${numeric.toLocaleString("en-IN")} on Razorpay` : "Donate on Razorpay"}
         </a>
+
+        <ol className="mt-6 space-y-2 text-[12px] leading-[1.8] text-background/55">
+          <li>1. Razorpay opens in a new tab.</li>
+          <li>
+            2. Enter{" "}
+            {numeric > 0 ? (
+              <span className="text-accent">₹{numeric.toLocaleString("en-IN")}</span>
+            ) : (
+              "your amount"
+            )}{" "}
+            and your details, then pay.
+          </li>
+          <li>
+            3. Razorpay handles payment status and confirmation. This website does not verify
+            payments.
+          </li>
+        </ol>
 
         <p className="mt-8 text-center serif italic text-[15px] text-accent">
           From every creature we save — thank you.
         </p>
-      </div>
-    </div>
-  );
-}
-
-function ThankYouSection({
-  amount,
-  setAmount,
-  onReset,
-}: {
-  amount: string;
-  setAmount: (v: string) => void;
-  onReset: () => void;
-}) {
-  const numeric = Number(amount) || 0;
-  const waText = encodeURIComponent(
-    `Hi Mohalle Mastane team — I've just donated ₹${numeric} via UPI. Sharing my payment screenshot for your records.`
-  );
-  const mailBody = encodeURIComponent(
-    `Hi,\n\nI have contributed ₹${numeric} via UPI to streetkind@upi.\n\nName:\nPhone:\nTransaction ID:\n(Screenshot attached)\n\nThank you.`
-  );
-
-  return (
-    <div id="thanks" className="mt-24 border-t border-accent pt-10">
-      <div className="plate">A heartfelt thank you</div>
-      <h3 className="mt-6 serif text-[28px] leading-[1.15] tracking-[-0.02em] md:text-[42px]">
-        From every neighbourhood, every paw — <span className="italic text-accent">thank you</span>.
-      </h3>
-      {numeric > 0 && (
-        <p className="mt-6 serif text-[18px] text-foreground/80 md:text-[20px]">
-          Your intended contribution:{" "}
-          <span className="text-accent">₹{numeric.toLocaleString("en-IN")}</span>
-        </p>
-      )}
-
-      <div className="mt-12 grid border-t border-border md:grid-cols-3">
-        {[
-          { n: "01", t: "Complete payment", d: "If you haven't already, tap Pay via UPI or scan the code in the panel." },
-          { n: "02", t: "Take a screenshot", d: "Capture the payment success screen from your UPI app — it's your receipt." },
-          { n: "03", t: "Share the proof", d: "Send it via WhatsApp or email so we can acknowledge it and issue a receipt." },
-        ].map((s, i) => (
-          <div
-            key={s.n}
-            className={`border-b border-border py-8 md:border-b-0 md:py-10 ${
-              i !== 0 ? "md:border-l md:border-border md:pl-8" : ""
-            } ${i !== 2 ? "md:pr-8" : ""}`}
-          >
-            <div className="plate">{s.n}</div>
-            <div className="mt-4 serif text-[19px]">{s.t}</div>
-            <div className="mt-3 text-[13px] leading-[1.9] text-muted-foreground">{s.d}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-12 flex flex-wrap gap-3">
-        <a
-          href={`https://wa.me/?text=${waText}`}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center bg-foreground px-7 py-3 text-[11px] uppercase tracking-[0.26em] text-background transition-colors hover:bg-accent"
-        >
-          Share proof on WhatsApp →
-        </a>
-        <a
-          href={`mailto:hello@streetkind.org?subject=Donation%20proof%20-%20%E2%82%B9${numeric}&body=${mailBody}`}
-          className="inline-flex items-center border border-border px-7 py-3 text-[11px] uppercase tracking-[0.26em] text-foreground transition-colors hover:border-accent hover:text-accent"
-        >
-          Email payment proof →
-        </a>
-        <button
-          type="button"
-          onClick={() => {
-            setAmount("500");
-            onReset();
-          }}
-          className="inline-flex items-center border border-border px-7 py-3 text-[11px] uppercase tracking-[0.26em] text-muted-foreground transition-colors hover:border-accent hover:text-accent"
-        >
-          Make another donation
-        </button>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.png.asset.json";
+import { site, mailto } from "@/config/site";
 import { SiteMenu } from "@/components/SiteMenu";
 import { ProcessJourney } from "@/components/ProcessJourney";
 import { Chamber, Court, Figure, Plate, Quiet, Row, Title } from "@/components/Ando";
@@ -51,7 +52,7 @@ function Nav() {
         </Link>
         <div className="flex items-center gap-2 md:gap-4">
           <a
-            href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
+            href={site.whatsappGroupUrl}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center bg-foreground px-4 py-2 text-[10px] uppercase tracking-[0.26em] text-background transition-colors hover:bg-accent md:px-5 md:py-2.5 md:text-[11px]"
@@ -153,41 +154,41 @@ function Faces() {
         <br />
         <span className="italic text-accent">The lives we share a lane with.</span>
       </h2>
-      <div className="mt-12 grid gap-5 md:grid-cols-3 md:gap-8">
-        <figure>
+      <div className="mt-12 grid min-w-0 gap-5 md:grid-cols-3 md:gap-8">
+        <figure className="min-w-0">
           <img
             src={strayDog.url}
             alt="A street dog resting in a sunlit concrete courtyard"
             loading="lazy"
             width={1200}
             height={900}
-            className="h-[280px] w-full object-cover md:h-[420px]"
+            className="h-[280px] min-w-0 w-full object-cover md:h-[420px]"
           />
           <figcaption className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
             Street dog · resting in the light
           </figcaption>
         </figure>
-        <figure>
+        <figure className="min-w-0">
           <img
             src={strayCat.url}
             alt="A street cat paused in a narrow concrete corridor"
             loading="lazy"
             width={1200}
             height={900}
-            className="h-[280px] w-full object-cover md:h-[420px]"
+            className="h-[280px] min-w-0 w-full object-cover md:h-[420px]"
           />
           <figcaption className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
             Street cat · watching from the corridor
           </figcaption>
         </figure>
-        <figure>
+        <figure className="min-w-0">
           <img
             src={strayDogs.url}
             alt="Two stray dogs sleeping together on a concrete floor"
             loading="lazy"
             width={1200}
             height={900}
-            className="h-[280px] w-full object-cover md:h-[420px]"
+            className="h-[280px] min-w-0 w-full object-cover md:h-[420px]"
           />
           <figcaption className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
             Companions · warmth in the same corner
@@ -237,7 +238,9 @@ function Stories() {
       </div>
 
       <a
-        href="mailto:hello@streetkind.org?subject=My rescue story"
+        href={mailto("My rescue story") ?? site.whatsappGroupUrl}
+        target={site.email ? undefined : "_blank"}
+        rel={site.email ? undefined : "noreferrer"}
         className="mt-14 inline-flex items-center border border-foreground/40 px-8 py-4 text-[10px] uppercase tracking-[0.3em] transition-colors hover:border-accent hover:text-accent"
       >
         Share your story →
@@ -525,7 +528,7 @@ function TakeAction() {
           All of this starts with one tap · Free · Open to all residents
         </p>
         <a
-          href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
+          href={site.whatsappGroupUrl}
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center justify-center bg-foreground px-9 py-5 text-[11px] uppercase tracking-[0.28em] text-background transition-colors hover:bg-accent"
@@ -580,15 +583,19 @@ function FooterMini() {
         <div>
           <div className="plate mb-6">Get in touch</div>
           <p className="text-[14px] leading-[2] text-foreground/85">
-            <a href="mailto:streetkind@gmail.com" className="hover:text-accent">
-              streetkind@gmail.com
+            {site.email && (
+              <>
+                <a href={`mailto:${site.email}`} className="hover:text-accent">
+                  {site.email}
+                </a>
+                <br />
+              </>
+            )}
+            <a href={site.phoneHref} className="hover:text-accent">
+              {site.phoneDisplay}
             </a>
             <br />
-            <a href="tel:+917978562404" className="hover:text-accent">
-              +91 79785 62404
-            </a>
-            <br />
-            Our city — India
+            {site.location}
           </p>
         </div>
         <div>
@@ -602,7 +609,7 @@ function FooterMini() {
           </ul>
         </div>
         <div>
-          <div className="plate mb-6">Mohalle Mastane · 2025</div>
+          <div className="plate mb-6">Mohalle Mastane · {new Date().getFullYear()}</div>
           <p className="text-[13px] leading-[2] text-muted-foreground">
             Coexistence · Compassion · Togetherness
           </p>

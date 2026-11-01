@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.png.asset.json";
+import { site } from "@/config/site";
 import { SiteMenu } from "@/components/SiteMenu";
 import { Sprig } from "@/components/Sprig";
 import boriBed from "@/assets/bori-bed.jpg.asset.json";
@@ -41,14 +42,13 @@ function Nav() {
           </span>
         </Link>
         <div className="flex items-center gap-2 md:gap-4">
-          <a
-            href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="/"
+            hash="rescue-circle-registration"
             className="inline-flex items-center px-4 md:px-5 py-2 md:py-2.5 bg-foreground text-background text-[10px] md:text-[11px] uppercase tracking-[0.26em] hover:bg-accent transition-colors"
           >
             Volunteer
-          </a>
+          </Link>
           <SiteMenu active="Events & Volunteers" />
         </div>
       </div>
@@ -164,15 +164,15 @@ function Events() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
-                href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
+                href={site.razorpayUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3.5 bg-foreground text-background text-[11px] uppercase tracking-[0.26em] hover:bg-accent transition-colors"
               >
-                Sponsor a Bori Bed
+                Sponsor a Bori Bed · ₹40
               </a>
               <a
-                href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
+                href={site.whatsappGroupUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3.5 border border-foreground text-foreground text-[11px] uppercase tracking-[0.26em] hover:bg-foreground hover:text-background transition-colors"
@@ -290,7 +290,7 @@ function Volunteer() {
 
         <div className="mt-14 flex flex-col sm:flex-row gap-4">
           <a
-            href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
+            href={site.whatsappGroupUrl}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center px-7 py-4 bg-foreground text-background text-[11px] uppercase tracking-[0.28em] hover:bg-accent transition-colors"
@@ -298,10 +298,10 @@ function Volunteer() {
             Join the WhatsApp Circle
           </a>
           <a
-            href="tel:+917978562404"
+            href={site.phoneHref}
             className="inline-flex items-center justify-center px-7 py-4 border border-foreground text-foreground text-[11px] uppercase tracking-[0.28em] hover:bg-foreground hover:text-background transition-colors"
           >
-            Call +91 79785 62404
+            Call {site.phoneDisplay}
           </a>
         </div>
       </div>
@@ -331,13 +331,19 @@ function FooterMini() {
         <div>
           <div className="eyebrow mb-4 text-background/55">Get in touch</div>
           <p className="text-[14px] leading-[1.85]">
-            hello@streetkind.org
-            <br />
-            <a href="tel:+917978562404" className="hover:text-accent">
-              +91 79785 62404
+            {site.email && (
+              <>
+                <a href={`mailto:${site.email}`} className="hover:text-accent">
+                  {site.email}
+                </a>
+                <br />
+              </>
+            )}
+            <a href={site.phoneHref} className="hover:text-accent">
+              {site.phoneDisplay}
             </a>
             <br />
-            Our city — India
+            {site.location}
           </p>
         </div>
         <div>
@@ -350,7 +356,7 @@ function FooterMini() {
           </ul>
         </div>
         <div>
-          <div className="eyebrow mb-4 text-background/55">Mohalle Mastane · 2025</div>
+          <div className="eyebrow mb-4 text-background/55">Mohalle Mastane · {new Date().getFullYear()}</div>
           <p className="text-[13px] leading-[1.85] text-background/65">
             Coexistence · Compassion · Togetherness
           </p>

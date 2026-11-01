@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { site } from "@/config/site";
 import { SiteMenu } from "@/components/SiteMenu";
 import { Sprig } from "@/components/Sprig";
-import { VolunteerForm } from "@/components/VolunteerForm";
+import { RescueCircleRegistration, VolunteerForm } from "@/components/VolunteerForm";
 import { Rail, RailItem } from "@/components/Rail";
 import { Reveal } from "@/components/Reveal";
 import { StoryCard } from "@/components/StoryCard";
@@ -58,13 +59,14 @@ function Nav() {
           </span>
         </a>
         <div className="flex items-center gap-2 md:gap-4">
-          <Link
-            to="/fundraising"
-            hash="contribute"
+          <a
+            href={site.razorpayUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center px-4 md:px-5 py-2 md:py-2.5 bg-foreground text-background text-[10px] md:text-[11px] uppercase tracking-[0.26em] hover:bg-accent transition-colors"
           >
             Donate
-          </Link>
+          </a>
 
           <SiteMenu />
         </div>
@@ -109,13 +111,14 @@ function Hero() {
               >
                 Join the Movement
               </a>
-              <Link
-                to="/fundraising"
-                hash="contribute"
+              <a
+                href={site.razorpayUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 border border-foreground/40 text-[10px] uppercase tracking-[0.34em] hover:border-accent hover:text-accent transition-colors"
               >
                 Donate
-              </Link>
+              </a>
 
             </div>
           </div>
@@ -144,8 +147,8 @@ function Hero() {
 function About() {
   return (
     <section id="about" className="py-28 md:py-44 border-b border-border">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-12 grid md:grid-cols-12 gap-10 md:gap-20">
-        <div className="md:col-span-5">
+      <div className="mx-auto max-w-[1400px] px-5 md:px-12 grid md:grid-cols-12 gap-10 md:gap-10 lg:gap-20">
+        <div className="min-w-0 md:col-span-5">
           <div className="plate mb-10">02 — About the Trust</div>
           <h2 className="serif font-bold text-[32px] md:text-[52px] leading-[1.05] tracking-[-0.01em]">
             A collective effort,
@@ -162,7 +165,7 @@ function About() {
             className="mt-10 w-full h-[280px] md:h-[420px] object-cover"
           />
         </div>
-        <div className="md:col-span-7 md:pt-3 space-y-6 text-[15px] md:text-[17px] leading-[1.85] text-muted-foreground">
+        <div className="min-w-0 md:col-span-7 md:pt-3 space-y-6 text-[15px] md:text-[17px] leading-[1.85] text-muted-foreground">
           <p>
             Mohalle Mastane is not an isolated charity operating from a single
             shelter. We are a decentralised trust that empowers neighbours to
@@ -465,16 +468,16 @@ function Join() {
           circle of compassion where you live.
         </p>
         <div className="mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <Link
-            id="donate"
-            to="/fundraising"
-            hash="contribute"
+          <a
+            href={site.razorpayUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-4 bg-foreground text-background text-[11px] uppercase tracking-[0.28em] hover:bg-accent transition-colors"
           >
             Donate
-          </Link>
+          </a>
           <a
-            href="#volunteer"
+            href="#rescue-circle-registration"
             className="inline-flex items-center justify-center px-8 py-4 border border-foreground text-[11px] uppercase tracking-[0.28em] hover:border-accent hover:text-accent transition-colors"
           >
             Volunteer
@@ -489,9 +492,19 @@ function Join() {
 
         </div>
 
-        <div className="mt-16 md:mt-24 border-t border-border pt-12">
-          <div className="plate mb-8">Volunteer Sign-Up</div>
-          <VolunteerForm id="volunteer" />
+        {import.meta.env.DEV && (
+          <div id="supabase-dev-test" className="mt-16 md:mt-24 border-t border-border pt-12">
+            <div className="plate mb-8">Development-only Supabase test form</div>
+            <p className="mb-8 max-w-xl text-[12px] leading-[1.7] text-muted-foreground">
+              For local testing only. Do not enter real personal information.
+            </p>
+            <VolunteerForm id="volunteer" showRescueCircleRegistration={false} />
+          </div>
+        )}
+
+        <div id="rescue-circle-registration" className="mt-16 md:mt-24 border-t border-border pt-12">
+          <div className="plate mb-8">Rescue Circle Registration</div>
+          <RescueCircleRegistration />
         </div>
 
       </div>
@@ -536,10 +549,28 @@ function Footer() {
         <div className="md:col-span-4">
           <div className="eyebrow mb-4 text-background/55">Get in touch</div>
           <p className="text-[14px] leading-[1.85] text-background/85">
-            hello@streetkind.org
+            {site.email && (
+              <>
+                <a href={`mailto:${site.email}`} className="hover:text-accent">
+                  {site.email}
+                </a>
+                <br />
+              </>
+            )}
+            <a href={site.phoneHref} className="hover:text-accent">
+              {site.phoneDisplay}
+            </a>
             <br />
-            Our city — India
+            {site.location}
           </p>
+          <a
+            href={site.whatsappGroupUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 inline-flex items-center border border-background/30 px-5 py-3 text-[10px] uppercase tracking-[0.26em] text-background/85 transition-colors hover:border-accent hover:text-accent"
+          >
+            WhatsApp community
+          </a>
         </div>
       </div>
       <div className="border-t border-background/10">
