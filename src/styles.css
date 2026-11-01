@@ -78,7 +78,15 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { -webkit-font-smoothing: antialiased; }
+  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  /* Anchored sections land below the fixed header instead of under it. */
+  [id] { scroll-margin-top: 5.5rem; }
+  /* Prevent any stray wide element from causing sideways scroll on phones. */
+  body { overflow-x: clip; }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -174,6 +182,11 @@
   background-size: cover, cover;
   background-position: center, center;
   background-attachment: scroll, fixed;
+}
+/* iOS Safari and most phones don't support fixed backgrounds — they render
+   blurry or jump. Use normal scrolling backgrounds on touch / small screens. */
+@media (max-width: 1024px), (hover: none) {
+  .concrete-dark { background-attachment: scroll, scroll; }
 }
 
 

@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactElement } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.png.asset.json";
+import { site } from "@/config/site";
 
 type Icon = (props: { className?: string }) => ReactElement;
 
@@ -79,6 +80,7 @@ type Item = {
   sub: string;
   to: string;
   hash?: string;
+  href?: string;
   Icon: Icon;
 };
 
@@ -87,7 +89,14 @@ export const menuItems: Item[] = [
   { n: "02", label: "Vision", sub: "Our Dream. Our Ecosystem.", to: "/vision", Icon: IconVision },
   { n: "03", label: "Events & Volunteers", sub: "Get Involved. Be the Change.", to: "/events", Icon: IconEvents },
   { n: "04", label: "Fundraising", sub: "Projects. Transparency. Impact.", to: "/fundraising", Icon: IconFundraising },
-  { n: "05", label: "Donate", sub: "Support. Care. Transform.", to: "/fundraising", hash: "donate", Icon: IconDonate },
+  {
+    n: "05",
+    label: "Donate",
+    sub: "Support. Care. Transform.",
+    to: "/fundraising",
+    href: site.razorpayUrl,
+    Icon: IconDonate,
+  },
 ];
 
 export function SiteMenu({ active, tone = "light" }: { active?: string; tone?: "light" | "dark" }) {
@@ -169,30 +178,48 @@ export function SiteMenu({ active, tone = "light" }: { active?: string; tone?: "
                 <ul className="divide-y divide-background/10">
                   {menuItems.map((item) => {
                     const isActive = active === item.label;
+                    const content = (
+                      <>
+                        <span className="serif italic text-accent text-[15px] w-7">{item.n}</span>
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-background/15 bg-background/5 text-accent">
+                          <item.Icon className="h-5 w-5" />
+                        </span>
+                        <span className="flex-1">
+                          <span className="block serif text-[22px] md:text-[26px] leading-tight text-background">
+                            {item.label}
+                          </span>
+                          <span className="block mt-1 text-[12px] text-background/60">
+                            {item.sub}
+                          </span>
+                        </span>
+                        <IconArrow className="h-5 w-5 text-background/40 group-hover:text-accent transition-colors" />
+                      </>
+                    );
+                    const className = `group flex items-center gap-4 py-4 px-3 -mx-3 transition-colors ${
+                      isActive ? "bg-background/10" : "hover:bg-background/5"
+                    }`;
                     return (
                       <li key={item.n}>
-                        <Link
-                          to={item.to}
-                          hash={item.hash}
-                          onClick={() => setOpen(false)}
-                          className={`group flex items-center gap-4 py-4 px-3 -mx-3 transition-colors ${
-                            isActive ? "bg-background/10" : "hover:bg-background/5"
-                          }`}
-                        >
-                          <span className="serif italic text-accent text-[15px] w-7">{item.n}</span>
-                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-background/15 bg-background/5 text-accent">
-                            <item.Icon className="h-5 w-5" />
-                          </span>
-                          <span className="flex-1">
-                            <span className="block serif text-[22px] md:text-[26px] leading-tight text-background">
-                              {item.label}
-                            </span>
-                            <span className="block mt-1 text-[12px] text-background/60">
-                              {item.sub}
-                            </span>
-                          </span>
-                          <IconArrow className="h-5 w-5 text-background/40 group-hover:text-accent transition-colors" />
-                        </Link>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setOpen(false)}
+                            className={className}
+                          >
+                            {content}
+                          </a>
+                        ) : (
+                          <Link
+                            to={item.to}
+                            hash={item.hash}
+                            onClick={() => setOpen(false)}
+                            className={className}
+                          >
+                            {content}
+                          </Link>
+                        )}
                       </li>
                     );
                   })}
@@ -200,7 +227,7 @@ export function SiteMenu({ active, tone = "light" }: { active?: string; tone?: "
               </nav>
 
               <a
-                href="https://chat.whatsapp.com/LpCsjPC4jey28ZcdiK4hzD?s=cl&p=a&ilr=2"
+                href={site.whatsappGroupUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-10 flex items-center gap-4 rounded-full bg-background text-ink px-5 py-4 hover:bg-accent transition-colors"
